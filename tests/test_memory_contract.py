@@ -226,3 +226,4 @@ class TestContractDocumentationExamples:
         assert events[0].type == "INGEST"
         assert events[1].type == "CONSOLIDATE"
         assert events[0].ts < events[1].ts  # Chronological order
+
