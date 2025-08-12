@@ -1,325 +1,257 @@
 ﻿"""
-Encryption Interface for Lumina Memory
+AES-256-GCM envelope encryption with DEK per file and KEK from passphrase.
 
-This module provides encryption interfaces for future post-M12 implementation.
-Currently implements stubs and design patterns that will be extended with:
-- AES-256-GCM for content encryption
-- RSA/ECC for key exchange
-- Zero-knowledge proof interfaces
-- Homomorphic encryption hooks
-
-Design Principles:
-- Interface segregation: Clean boundaries for different encryption needs
-- Future-ready: Extensible design for post-M12 cryptographic features
-- Performance-aware: Minimal overhead for current non-encrypted operations
-- Security-first: Safe defaults and secure key management patterns
+This module provides encryption stubs for future security implementation.
+Uses AES-256-GCM for authenticated encryption with envelope encryption pattern.
 """
 
-from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional, bytes, Tuple, Protocol
-from dataclasses import dataclass
-from enum import Enum
-import hashlib
+import os
 import secrets
-import time
+import base64
+import json
+from typing import Dict, Any, Optional, Tuple, Union
 
+try:
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.hazmat.primitives.kdf.argon2 import Argon2id
+    from cryptography.hazmat.primitives import hashes
+except ImportError:
+    AESGCM = None
+    Argon2id = None
+    hashes = None
 
-class EncryptionMode(Enum):
-    """Supported encryption modes."""
-    NONE = "none"                    # No encryption (current M1-M12 mode)
-    AES_256_GCM = "aes_256_gcm"     # AES-256 in GCM mode (post-M12)
-    CHACHA20_POLY1305 = "chacha20"  # ChaCha20-Poly1305 (post-M12)
-    HOMOMORPHIC = "homomorphic"     # Homomorphic encryption (future)
+class EncryptionError(Exception):
+    """Raised when encryption fails."""
+    pass
 
+class DecryptionError(Exception):
+    """Raised when decryption fails."""
+    pass
 
-@dataclass(frozen=True)
-class EncryptionKey:
-    """Encryption key with metadata."""
-    key_id: str              # Unique key identifier
-    key_data: bytes          # Raw key material
-    algorithm: str           # Algorithm this key is for
-    created_at: float        # Key creation timestamp
-    expires_at: Optional[float] = None  # Optional expiration
-    
-    def is_expired(self) -> bool:
-        """Check if key is expired."""
-        if self.expires_at is None:
-            return False
-        return time.time() > self.expires_at
+class KeyDerivationError(Exception):
+    """Raised when key derivation fails."""
+    pass
 
+def new_aesgcm_key() -> bytes:
+    """Generate a new random 256-bit AES key."""
+    return secrets.token_bytes(32)  # 256 bits
 
-@dataclass(frozen=True)  
-class EncryptedData:
-    """Container for encrypted data with metadata."""
-    ciphertext: bytes        # Encrypted data
-    nonce: bytes            # Nonce/IV used for encryption
-    tag: bytes              # Authentication tag
-    algorithm: str          # Encryption algorithm used
-    key_id: str             # ID of key used for encryption
-    metadata: Dict[str, Any] # Additional encryption metadata
-
-
-class EncryptionProvider(Protocol):
-    """Protocol for encryption providers."""
-    
-    def encrypt(self, plaintext: bytes, key: EncryptionKey) -> EncryptedData:
-        """Encrypt plaintext using provided key."""
-        ...
-    
-    def decrypt(self, encrypted_data: EncryptedData, key: EncryptionKey) -> bytes:
-        """Decrypt data using provided key."""
-        ...
-    
-    def generate_key(self) -> EncryptionKey:
-        """Generate new encryption key."""
-        ...
-
-
-class NoEncryptionProvider:
+def aesgcm_encrypt(
+    key: bytes, 
+    plaintext: bytes, 
+    aad: Optional[bytes] = None
+) -> Tuple[bytes, bytes]:
     """
-    Null encryption provider for current M1-M12 phase.
+    Encrypt data using AES-256-GCM.
     
-    Provides the interface without actual encryption, allowing
-    the system to be designed with encryption in mind while
-    maintaining current performance characteristics.
-    """
-    
-    def encrypt(self, plaintext: bytes, key: Optional[EncryptionKey] = None) -> EncryptedData:
-        """Return 'encrypted' data that is actually plaintext."""
-        return EncryptedData(
-            ciphertext=plaintext,
-            nonce=b"",
-            tag=b"",
-            algorithm="none",
-            key_id="none",
-            metadata={"encrypted": False}
-        )
-    
-    def decrypt(self, encrypted_data: EncryptedData, key: Optional[EncryptionKey] = None) -> bytes:
-        """Return 'decrypted' data (which is already plaintext)."""
-        return encrypted_data.ciphertext
-    
-    def generate_key(self) -> EncryptionKey:
-        """Generate dummy key for interface compatibility."""
-        return EncryptionKey(
-            key_id="none",
-            key_data=b"",
-            algorithm="none",
-            created_at=time.time()
-        )
-
-
-class MemoryEncryption:
-    """
-    Encryption interface for memory content.
-    
-    Provides consistent interface for memory encryption operations
-    across different encryption providers and modes.
-    """
-    
-    def __init__(self, provider: EncryptionProvider = None, mode: EncryptionMode = EncryptionMode.NONE):
-        """Initialize with encryption provider and mode."""
-        self.provider = provider or NoEncryptionProvider()
-        self.mode = mode
-        self._keys: Dict[str, EncryptionKey] = {}
-    
-    def encrypt_memory_content(
-        self, 
-        content: str, 
-        key_id: Optional[str] = None
-    ) -> Tuple[EncryptedData, str]:
-        """
-        Encrypt memory content.
+    Args:
+        key: 32-byte AES-256 key
+        plaintext: Data to encrypt
+        aad: Optional additional authenticated data
         
-        Returns:
-            Tuple of (encrypted_data, key_id_used)
-        """
-        if self.mode == EncryptionMode.NONE:
-            # No encryption - return wrapped plaintext
-            encrypted = self.provider.encrypt(content.encode('utf-8'))
-            return encrypted, "none"
+    Returns:
+        Tuple of (nonce, ciphertext) 
+    """
+    if not AESGCM:
+        raise EncryptionError("cryptography library not available")
+    
+    if len(key) != 32:
+        raise EncryptionError("Key must be 32 bytes for AES-256")
+    
+    if plaintext is None:
+        raise EncryptionError("Cannot encrypt None data")
+    
+    # Generate random 96-bit nonce for GCM
+    nonce = secrets.token_bytes(12)
+    
+    # Encrypt using AES-GCM
+    cipher = AESGCM(key)
+    try:
+        ciphertext = cipher.encrypt(nonce, plaintext, aad)
+        return nonce, ciphertext
+    except Exception as e:
+        raise EncryptionError(f"AES-GCM encryption failed: {e}")
+
+def aesgcm_decrypt(
+    key: bytes,
+    nonce: bytes, 
+    ciphertext: bytes,
+    aad: Optional[bytes] = None
+) -> bytes:
+    """
+    Decrypt data using AES-256-GCM.
+    
+    Args:
+        key: 32-byte AES-256 key
+        nonce: 12-byte nonce used for encryption
+        ciphertext: Encrypted data
+        aad: Optional additional authenticated data (must match encryption)
         
-        # Get or generate key
-        if key_id is None:
-            key = self.provider.generate_key()
-            key_id = key.key_id
-            self._keys[key_id] = key
-        else:
-            key = self._keys.get(key_id)
-            if key is None:
-                raise ValueError(f"Key {key_id} not found")
+    Returns:
+        Decrypted plaintext
+    """
+    if not AESGCM:
+        raise DecryptionError("cryptography library not available")
+    
+    if len(key) != 32:
+        raise DecryptionError("Key must be 32 bytes for AES-256")
+    
+    cipher = AESGCM(key)
+    try:
+        plaintext = cipher.decrypt(nonce, ciphertext, aad)
+        return plaintext
+    except Exception as e:
+        raise DecryptionError(f"AES-GCM decryption failed: {e}")
+
+def derive_kek(
+    passphrase: Optional[str] = None,
+    salt: bytes = b"lumina_memory_salt_16b"
+) -> bytes:
+    """
+    Derive KEK from LUMINA_PASSPHRASE using Argon2id.
+    
+    Args:
+        passphrase: Password to derive from (uses LUMINA_PASSPHRASE env var if None)
+        salt: Salt for key derivation
         
-        # Encrypt content
-        encrypted = self.provider.encrypt(content.encode('utf-8'), key)
-        return encrypted, key_id
+    Returns:
+        32-byte KEK for envelope encryption
+    """
+    if not Argon2id:
+        raise KeyDerivationError("cryptography library not available")
     
-    def decrypt_memory_content(self, encrypted_data: EncryptedData) -> str:
-        """Decrypt memory content back to string."""
-        if encrypted_data.algorithm == "none":
-            return encrypted_data.ciphertext.decode('utf-8')
+    # Get passphrase from environment if not provided
+    if passphrase is None:
+        passphrase = os.environ.get('LUMINA_PASSPHRASE')
+        if not passphrase:
+            raise KeyDerivationError("No passphrase provided and LUMINA_PASSPHRASE not set")
+    
+    # Derive key using Argon2id
+    kdf = Argon2id(
+        algorithm=hashes.SHA256(),
+        length=32,  # 256-bit key
+        salt=salt,
+        time_cost=2,  # Number of iterations
+        memory_cost=2**16,  # Memory cost in KB
+        parallelism=1  # Number of parallel threads
+    )
+    
+    try:
+        kek = kdf.derive(passphrase.encode('utf-8'))
+        return kek
+    except Exception as e:
+        raise KeyDerivationError(f"Key derivation failed: {e}")
+
+def generate_dek() -> bytes:
+    """Generate random DEK (Data Encryption Key)."""
+    return new_aesgcm_key()
+
+def create_envelope(data: bytes, kek: bytes) -> Dict[str, str]:
+    """
+    Create envelope encryption structure.
+    
+    Args:
+        data: Data to encrypt
+        kek: Key Encryption Key (32 bytes)
         
-        # Get key for decryption
-        key = self._keys.get(encrypted_data.key_id)
-        if key is None:
-            raise ValueError(f"Decryption key {encrypted_data.key_id} not found")
+    Returns:
+        Dictionary with base64-encoded encrypted components
+    """
+    # Generate random DEK for this data
+    dek = generate_dek()
+    
+    # Encrypt data with DEK
+    data_nonce, encrypted_data = aesgcm_encrypt(dek, data)
+    
+    # Encrypt DEK with KEK  
+    dek_nonce, encrypted_dek = aesgcm_encrypt(kek, dek)
+    
+    # Create envelope structure (all base64 for JSON serialization)
+    envelope = {
+        "encrypted_dek": base64.b64encode(encrypted_dek).decode('ascii'),
+        "encrypted_data": base64.b64encode(encrypted_data).decode('ascii'), 
+        "salt": base64.b64encode(dek_nonce).decode('ascii'),  # DEK nonce
+        "nonce": base64.b64encode(data_nonce).decode('ascii')  # Data nonce
+    }
+    
+    return envelope
+
+def open_envelope(envelope: Dict[str, str], kek: bytes) -> bytes:
+    """
+    Open envelope encryption structure.
+    
+    Args:
+        envelope: Envelope dictionary with encrypted components
+        kek: Key Encryption Key (32 bytes)
         
-        # Decrypt
-        plaintext_bytes = self.provider.decrypt(encrypted_data, key)
-        return plaintext_bytes.decode('utf-8')
-    
-    def encrypt_embedding(self, embedding: bytes) -> Tuple[EncryptedData, str]:
-        """Encrypt embedding vector (future: homomorphic encryption)."""
-        if self.mode == EncryptionMode.HOMOMORPHIC:
-            # Future: Use homomorphic encryption for embeddings
-            # This would allow computation on encrypted embeddings
-            pass
+    Returns:
+        Decrypted data
+    """
+    try:
+        # Decode base64 components
+        encrypted_dek = base64.b64decode(envelope["encrypted_dek"])
+        encrypted_data = base64.b64decode(envelope["encrypted_data"])
+        dek_nonce = base64.b64decode(envelope["salt"])  # DEK nonce
+        data_nonce = base64.b64decode(envelope["nonce"])  # Data nonce
         
-        # For now, use standard encryption
-        encrypted = self.provider.encrypt(embedding)
-        return encrypted, "none"
-    
-    def get_encryption_metadata(self) -> Dict[str, Any]:
-        """Get metadata about encryption configuration."""
-        return {
-            'mode': self.mode.value,
-            'provider': self.provider.__class__.__name__,
-            'total_keys': len(self._keys),
-            'active_keys': sum(1 for key in self._keys.values() if not key.is_expired())
-        }
+        # Decrypt DEK using KEK
+        dek = aesgcm_decrypt(kek, dek_nonce, encrypted_dek)
+        
+        # Decrypt data using DEK
+        data = aesgcm_decrypt(dek, data_nonce, encrypted_data)
+        
+        return data
+        
+    except KeyError as e:
+        raise DecryptionError(f"Envelope missing required field: {e}")
+    except Exception as e:
+        raise DecryptionError(f"Envelope decryption failed: {e}")
 
+# Encryption system management functions
 
-class ZeroKnowledgeInterface(ABC):
+def rotate_keys(old_kek: bytes, new_kek: bytes, envelopes: list) -> list:
     """
-    Interface for zero-knowledge proof operations (future implementation).
+    Rotate encryption keys by re-encrypting all DEKs with new KEK.
     
-    This will enable:
-    - Proving memory existence without revealing content
-    - Verifying queries without exposing the query
-    - Private set intersection for memory overlap
+    Args:
+        old_kek: Current KEK
+        new_kek: New KEK
+        envelopes: List of envelope dictionaries
+        
+    Returns:
+        List of envelopes with re-encrypted DEKs
     """
+    rotated_envelopes = []
     
-    @abstractmethod
-    def generate_proof(self, statement: Dict[str, Any], witness: Dict[str, Any]) -> Dict[str, Any]:
-        """Generate zero-knowledge proof for statement with witness."""
-        pass
+    for envelope in envelopes:
+        try:
+            # Decrypt data with old KEK
+            data = open_envelope(envelope, old_kek)
+            
+            # Re-encrypt with new KEK
+            new_envelope = create_envelope(data, new_kek)
+            rotated_envelopes.append(new_envelope)
+            
+        except Exception as e:
+            raise EncryptionError(f"Key rotation failed for envelope: {e}")
     
-    @abstractmethod
-    def verify_proof(self, statement: Dict[str, Any], proof: Dict[str, Any]) -> bool:
-        """Verify zero-knowledge proof without witness."""
-        pass
-    
-    @abstractmethod
-    def create_commitment(self, value: Any, randomness: bytes) -> Dict[str, Any]:
-        """Create cryptographic commitment to value."""
-        pass
+    return rotated_envelopes
 
+def encrypt_json_data(data: Dict[str, Any], kek: bytes) -> Dict[str, str]:
+    """Encrypt JSON-serializable data using envelope encryption."""
+    json_bytes = json.dumps(data, sort_keys=True).encode('utf-8')
+    return create_envelope(json_bytes, kek)
 
-class HomomorphicInterface(ABC):
-    """
-    Interface for homomorphic encryption operations (future implementation).
-    
-    This will enable:
-    - Computing similarity on encrypted embeddings
-    - Encrypted aggregation operations  
-    - Private memory consolidation
-    """
-    
-    @abstractmethod
-    def encrypt_vector(self, vector: bytes, public_key: bytes) -> bytes:
-        """Encrypt vector for homomorphic operations."""
-        pass
-    
-    @abstractmethod
-    def compute_encrypted_similarity(self, enc_vec1: bytes, enc_vec2: bytes) -> bytes:
-        """Compute similarity between encrypted vectors."""
-        pass
-    
-    @abstractmethod
-    def aggregate_encrypted(self, encrypted_values: list[bytes]) -> bytes:
-        """Aggregate encrypted values homomorphically."""
-        pass
+def decrypt_json_data(envelope: Dict[str, str], kek: bytes) -> Dict[str, Any]:
+    """Decrypt envelope-encrypted JSON data."""
+    json_bytes = open_envelope(envelope, kek)
+    return json.loads(json_bytes.decode('utf-8'))
 
+# Stub functions for future implementation
+def setup_zero_knowledge_proofs():
+    """Placeholder for future ZK proof integration."""
+    pass
 
-# Stub implementations for future development
-class StubZeroKnowledge(ZeroKnowledgeInterface):
-    """Stub implementation - returns empty proofs."""
-    
-    def generate_proof(self, statement: Dict[str, Any], witness: Dict[str, Any]) -> Dict[str, Any]:
-        return {"proof": "stub", "valid": True}
-    
-    def verify_proof(self, statement: Dict[str, Any], proof: Dict[str, Any]) -> bool:
-        return proof.get("valid", False)
-    
-    def create_commitment(self, value: Any, randomness: bytes) -> Dict[str, Any]:
-        return {"commitment": "stub", "value_hash": hashlib.sha256(str(value).encode()).hexdigest()}
-
-
-class StubHomomorphic(HomomorphicInterface):
-    """Stub implementation - returns plaintext operations."""
-    
-    def encrypt_vector(self, vector: bytes, public_key: bytes) -> bytes:
-        return vector  # No encryption in stub
-    
-    def compute_encrypted_similarity(self, enc_vec1: bytes, enc_vec2: bytes) -> bytes:
-        # Stub: return dummy similarity
-        return b"0.5"  # Placeholder similarity score
-    
-    def aggregate_encrypted(self, encrypted_values: list[bytes]) -> bytes:
-        # Stub: return first value
-        return encrypted_values[0] if encrypted_values else b"0"
-
-
-# Global encryption configuration
-class EncryptionConfig:
-    """Global encryption configuration for the system."""
-    
-    def __init__(self):
-        self.memory_encryption = MemoryEncryption()
-        self.zero_knowledge = StubZeroKnowledge()
-        self.homomorphic = StubHomomorphic()
-        self.enabled = False  # Disabled for M1-M12
-    
-    def enable_encryption(self, mode: EncryptionMode = EncryptionMode.AES_256_GCM):
-        """Enable encryption (post-M12 feature)."""
-        # Future implementation will instantiate real encryption providers
-        self.enabled = True
-        print(f"WARNING: Encryption mode {mode} not yet implemented. Using stubs.")
-    
-    def get_status(self) -> Dict[str, Any]:
-        """Get encryption system status."""
-        return {
-            'enabled': self.enabled,
-            'memory_encryption': self.memory_encryption.get_encryption_metadata(),
-            'zero_knowledge_available': isinstance(self.zero_knowledge, StubZeroKnowledge),
-            'homomorphic_available': isinstance(self.homomorphic, StubHomomorphic),
-            'ready_for_m12_plus': False  # Will be True when real implementations are ready
-        }
-
-
-# Global encryption configuration instance
-global_encryption_config = EncryptionConfig()
-
-
-def get_content_fingerprint(content: str, salt: Optional[bytes] = None) -> str:
-    """
-    Generate secure fingerprint of content for deduplication.
-    
-    Uses HMAC-SHA256 with optional salt for secure content fingerprinting
-    without revealing the actual content.
-    """
-    if salt is None:
-        salt = b"lumina_memory_default_salt"  # Default salt for consistency
-    
-    import hmac
-    fingerprint = hmac.new(salt, content.encode('utf-8'), hashlib.sha256)
-    return fingerprint.hexdigest()
-
-
-def secure_compare(a: str, b: str) -> bool:
-    """
-    Secure string comparison to prevent timing attacks.
-    
-    Uses constant-time comparison to avoid leaking information
-    through timing differences.
-    """
-    return secrets.compare_digest(a.encode('utf-8'), b.encode('utf-8'))
+def setup_homomorphic_encryption():
+    """Placeholder for future homomorphic encryption."""
+    pass

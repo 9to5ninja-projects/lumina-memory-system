@@ -1,53 +1,24 @@
 ﻿"""
-Lumina Memory: Holographic Memory System for AI Applications
+Lumina Memory System - Identity and Integrity Rails
 
-A production-ready memory system with pure functional kernel, event sourcing,
-and mathematical guarantees for deterministic behavior.
+Core modules for content-addressed memory storage with cryptographic integrity.
 """
 
-__version__ = "0.2.0-alpha"  # M2: Kernel module complete
-__author__ = "Lumina Team"
-__email__ = "dev@lumina.ai"
+from .crypto_ids import content_fingerprint, verify_fingerprint, generate_content_id
+from .event_hashing import event_hash, verify_chain, create_genesis_event, create_chained_event
+from .encryption import (
+    new_aesgcm_key, aesgcm_encrypt, aesgcm_decrypt,
+    derive_kek, generate_dek, create_envelope, open_envelope
+)
+from .hrr import reference_vector, bind_vectors, similarity
+from .events import Event, create_ingest_event, create_conflict_event
 
-try:
-    # Core kernel (pure functional)
-    from .kernel import Memory, superpose, reinforce, decay, forget
-    from .kernel import SALIENCE_REINFORCE_CAP, DEFAULT_HALF_LIFE
-    
-    # Legacy system components (will be refactored to use kernel)
-    from .config import LuminaConfig
-    from .memory_system import MemorySystem
-    from .core import MemoryEntry, QueryResult
-    from .embeddings import EmbeddingProvider
-    from .vector_store import VectorStore
-    from .utils import setup_logging, normalize_similarity
-
-    # Main API exports
-    __all__ = [
-        # Pure functional kernel
-        "Memory",
-        "superpose", 
-        "reinforce",
-        "decay",
-        "forget",
-        "SALIENCE_REINFORCE_CAP",
-        "DEFAULT_HALF_LIFE",
-        
-        # Legacy system (to be refactored)
-        "MemorySystem",
-        "LuminaConfig", 
-        "MemoryEntry",
-        "QueryResult",
-        "EmbeddingProvider",
-        "VectorStore",
-        "setup_logging",
-        "normalize_similarity",
-    ]
-
-    # Configure default logging (legacy)
-    setup_logging()
-
-except ImportError as e:
-    # Graceful degradation for CI
-    print(f"Warning: Some imports failed in lumina_memory.__init__: {e}")
-    __all__ = []
+__version__ = "0.4.0"
+__all__ = [
+    "content_fingerprint", "verify_fingerprint", "generate_content_id",
+    "event_hash", "verify_chain", "create_genesis_event", "create_chained_event", 
+    "new_aesgcm_key", "aesgcm_encrypt", "aesgcm_decrypt",
+    "derive_kek", "generate_dek", "create_envelope", "open_envelope",
+    "reference_vector", "bind_vectors", "similarity",
+    "Event", "create_ingest_event", "create_conflict_event"
+]

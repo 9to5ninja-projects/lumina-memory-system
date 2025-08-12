@@ -1,4 +1,0 @@
-# file: G:\My Drive\Colab Notebooks\lumina_memory_package\src\lumina_memory\utils.py
-# hypothesis_version: 6.137.3
-
-[0.0, 1.0, 2.0, 1024, './logs', 'FAISS not available', 'INFO', '\\n', 'cosine', 'cuda_available', 'error', 'errors', 'euclidean', 'faiss_available', 'lumina_config.json', 'lumina_memory.log', 'memory_hits', 'memory_misses', 'numpy', 'percent', 'psutil not available', 'python_version', 'rss_mb', 'torch', 'torch_available', 'torch_version', 'transformers', 'vms_mb', 'warnings']

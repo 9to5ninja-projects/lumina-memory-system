@@ -1,4 +1,0 @@
-# file: C:\Users\m_tes\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\__config__.py
-# hypothesis_version: 6.137.3
-
-[200, '    %s = %s', '    baseline = %s', '    found = %s', '    not found = %s', '  NOT AVAILABLE', ' ...\n... ', ',', '.libs', '64_', ':', 'BLAS_SYMBOL_SUFFIX', 'HAVE_BLAS_ILP64', 'HAVE_CBLAS', 'HAVE_LAPACKE', '_', '_info', 'c', 'define_macros', 'get_info', 'language', 'libraries', 'library_dirs', 'openblas64_', 'openblas\\lib', 'runtime_library_dirs', 'show', 'sources', 'win32']

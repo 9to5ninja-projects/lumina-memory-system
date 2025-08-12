@@ -1,463 +1,246 @@
 ﻿"""
-Holographic Reduced Representations (HRR) for Lumina Memory
+Holographic Reduced Representations (HRR) for semantic vector operations.
 
-This module implements Vector Symbolic Architecture operations for creating
-holographic memory representations. HRRs enable:
-- Binding operations for associative memory
-- Superposition for memory consolidation
-- Circular convolution for structured representations
-- Memory fingerprinting and similarity detection
-
-Design Principles:
-- Mathematical rigor: Proper VSA algebra implementation
-- Efficient operations: NumPy-based vectorized computations
-- Deterministic behavior: Reproducible results with same inputs
-- Composable operations: Build complex representations from simple ones
-
-References:
-- Plate, T. A. (2003). Holographic reduced representations.
-- Kanerva, P. (2009). Hyperdimensional computing.
+This module provides reference_vector() for generating deterministic
+high-dimensional vectors from content and metadata for binding operations.
 """
 
-import numpy as np
-from typing import Dict, Any, List, Optional, Tuple, Union
-from dataclasses import dataclass
 import hashlib
-from scipy.fft import fft, ifft
-import warnings
+import json
+import numpy as np
+from typing import Dict, Any, Optional, Union
 
-
-@dataclass
-class HRRVector:
+def _canonicalize_for_hrr(content: Optional[str], metadata: Dict[str, Any]) -> str:
     """
-    Holographic Reduced Representation vector with operations.
-    
-    Encapsulates a high-dimensional vector with HRR-specific operations
-    for binding, unbinding, and similarity computation.
-    """
-    vector: np.ndarray          # High-dimensional vector
-    dimension: int              # Vector dimensionality
-    name: Optional[str] = None  # Optional human-readable name
-    metadata: Optional[Dict[str, Any]] = None  # Additional metadata
-    
-    def __post_init__(self):
-        """Validate HRR vector after creation."""
-        if self.vector.ndim != 1:
-            raise ValueError("HRR vector must be 1-dimensional")
-        if len(self.vector) != self.dimension:
-            raise ValueError(f"Vector length {len(self.vector)} != dimension {self.dimension}")
-        if self.metadata is None:
-            self.metadata = {}
-    
-    def normalize(self) -> 'HRRVector':
-        """Normalize vector to unit length."""
-        norm = np.linalg.norm(self.vector)
-        if norm == 0:
-            warnings.warn("Cannot normalize zero vector")
-            return self
-        
-        normalized_vector = self.vector / norm
-        return HRRVector(
-            vector=normalized_vector,
-            dimension=self.dimension,
-            name=f"norm({self.name})" if self.name else None,
-            metadata={**self.metadata, 'normalized': True}
-        )
-    
-    def similarity(self, other: 'HRRVector') -> float:
-        """Compute cosine similarity with another HRR vector."""
-        if self.dimension != other.dimension:
-            raise ValueError(f"Dimension mismatch: {self.dimension} != {other.dimension}")
-        
-        # Compute cosine similarity
-        dot_product = np.dot(self.vector, other.vector)
-        norm_self = np.linalg.norm(self.vector)
-        norm_other = np.linalg.norm(other.vector)
-        
-        if norm_self == 0 or norm_other == 0:
-            return 0.0
-        
-        return dot_product / (norm_self * norm_other)
-    
-    def bind(self, other: 'HRRVector') -> 'HRRVector':
-        """
-        Bind this vector with another using circular convolution.
-        
-        Binding creates associative connections between concepts.
-        If A is bound to B to create C, then C can be unbound with A to retrieve B.
-        """
-        if self.dimension != other.dimension:
-            raise ValueError(f"Dimension mismatch: {self.dimension} != {other.dimension}")
-        
-        # Circular convolution via FFT
-        fft_self = fft(self.vector)
-        fft_other = fft(other.vector)
-        bound_fft = fft_self * fft_other
-        bound_vector = np.real(ifft(bound_fft))
-        
-        # Create name for bound vector
-        name_self = self.name or "unknown"
-        name_other = other.name or "unknown"
-        bound_name = f"({name_self}  {name_other})"
-        
-        return HRRVector(
-            vector=bound_vector,
-            dimension=self.dimension,
-            name=bound_name,
-            metadata={
-                'operation': 'bind',
-                'operands': [name_self, name_other],
-                'source_metadata': [self.metadata, other.metadata]
-            }
-        )
-    
-    def unbind(self, other: 'HRRVector') -> 'HRRVector':
-        """
-        Unbind this vector with another using circular correlation.
-        
-        Unbinding retrieves associated information. If C = A  B,
-        then C  A  B (approximately).
-        """
-        if self.dimension != other.dimension:
-            raise ValueError(f"Dimension mismatch: {self.dimension} != {other.dimension}")
-        
-        # Circular correlation via FFT (conjugate of one operand)
-        fft_self = fft(self.vector)
-        fft_other_conj = np.conj(fft(other.vector))
-        unbound_fft = fft_self * fft_other_conj
-        unbound_vector = np.real(ifft(unbound_fft))
-        
-        # Create name for unbound vector
-        name_self = self.name or "unknown"
-        name_other = other.name or "unknown"
-        unbound_name = f"({name_self}  {name_other})"
-        
-        return HRRVector(
-            vector=unbound_vector,
-            dimension=self.dimension,
-            name=unbound_name,
-            metadata={
-                'operation': 'unbind',
-                'operands': [name_self, name_other],
-                'source_metadata': [self.metadata, other.metadata]
-            }
-        )
-    
-    def superpose(self, other: 'HRRVector', weight_self: float = 1.0, weight_other: float = 1.0) -> 'HRRVector':
-        """
-        Superpose (add) this vector with another.
-        
-        Superposition creates memory sets. Elements can be retrieved
-        from the superposition using similarity queries.
-        """
-        if self.dimension != other.dimension:
-            raise ValueError(f"Dimension mismatch: {self.dimension} != {other.dimension}")
-        
-        superposed_vector = weight_self * self.vector + weight_other * other.vector
-        
-        # Create name for superposed vector
-        name_self = self.name or "unknown"
-        name_other = other.name or "unknown"
-        superposed_name = f"({name_self} + {name_other})"
-        
-        return HRRVector(
-            vector=superposed_vector,
-            dimension=self.dimension,
-            name=superposed_name,
-            metadata={
-                'operation': 'superpose',
-                'operands': [name_self, name_other],
-                'weights': [weight_self, weight_other],
-                'source_metadata': [self.metadata, other.metadata]
-            }
-        )
-    
-    def permute(self, permutation: Optional[np.ndarray] = None) -> 'HRRVector':
-        """
-        Permute vector elements to create role/filler distinction.
-        
-        Permutation can be used to represent different roles in structured
-        representations (e.g., subject vs object in relations).
-        """
-        if permutation is None:
-            # Create default circular shift permutation
-            permutation = np.roll(np.arange(self.dimension), 1)
-        
-        if len(permutation) != self.dimension:
-            raise ValueError(f"Permutation length {len(permutation)} != dimension {self.dimension}")
-        
-        permuted_vector = self.vector[permutation]
-        
-        return HRRVector(
-            vector=permuted_vector,
-            dimension=self.dimension,
-            name=f"perm({self.name})" if self.name else None,
-            metadata={**self.metadata, 'operation': 'permute'}
-        )
-    
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert HRR vector to dictionary for serialization."""
-        return {
-            'vector': self.vector.tolist(),
-            'dimension': self.dimension,
-            'name': self.name,
-            'metadata': self.metadata
-        }
-    
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'HRRVector':
-        """Create HRR vector from dictionary."""
-        return cls(
-            vector=np.array(data['vector']),
-            dimension=data['dimension'],
-            name=data.get('name'),
-            metadata=data.get('metadata', {})
-        )
-
-
-def generate_random_hrr(dimension: int, name: Optional[str] = None, seed: Optional[int] = None) -> HRRVector:
-    """
-    Generate random HRR vector with specified properties.
+    Canonicalize content and metadata for deterministic HRR vector generation.
     
     Args:
-        dimension: Vector dimensionality
-        name: Optional name for the vector
-        seed: Optional random seed for reproducibility
+        content: Content text (can be None or empty)
+        metadata: Metadata dictionary
         
     Returns:
-        Random HRR vector
+        Canonical string representation
     """
-    if seed is not None:
-        np.random.seed(seed)
+    # Handle None/empty content
+    canonical_content = content or ""
+    
+    # Create deterministic representation
+    hrr_data = {
+        "content": canonical_content,
+        "metadata": metadata or {}
+    }
+    
+    # Sort keys for deterministic JSON
+    return json.dumps(hrr_data, sort_keys=True, separators=(',', ':'), ensure_ascii=True)
+
+def _seed_from_string(text: str) -> int:
+    """Generate deterministic seed from string."""
+    hash_obj = hashlib.sha256(text.encode('utf-8'))
+    # Use first 8 bytes of hash as seed (convert to int)
+    seed_bytes = hash_obj.digest()[:8]
+    return int.from_bytes(seed_bytes, byteorder='big') % (2**32)
+
+def reference_vector(
+    content: Optional[str], 
+    metadata: Dict[str, Any], 
+    dim: int = 256
+) -> np.ndarray:
+    """
+    Generate deterministic HRR reference vector from content and metadata.
+    
+    Args:
+        content: Content text (None/empty allowed)
+        metadata: Metadata dictionary
+        dim: Vector dimension
+        
+    Returns:
+        Unit-normalized numpy array of specified dimension
+    """
+    # Create canonical representation
+    canonical = _canonicalize_for_hrr(content, metadata)
+    
+    # Generate deterministic seed
+    seed = _seed_from_string(canonical)
+    
+    # Create random number generator with deterministic seed
+    rng = np.random.RandomState(seed)
     
     # Generate random vector from normal distribution
-    vector = np.random.normal(0, 1/np.sqrt(dimension), dimension)
+    vector = rng.normal(0, 1, dim)
     
-    return HRRVector(
-        vector=vector,
-        dimension=dimension,
-        name=name,
-        metadata={'type': 'random', 'seed': seed}
-    )
-
-
-def encode_sequence(items: List[HRRVector], position_vectors: Optional[List[HRRVector]] = None) -> HRRVector:
-    """
-    Encode a sequence of items using position binding.
-    
-    Each item is bound with its position vector and then all are superposed.
-    This allows the sequence order to be preserved and queried.
-    
-    Args:
-        items: List of HRR vectors to encode in sequence
-        position_vectors: Optional position vectors (generated if None)
-        
-    Returns:
-        HRR vector representing the sequence
-    """
-    if not items:
-        raise ValueError("Cannot encode empty sequence")
-    
-    dimension = items[0].dimension
-    
-    # Generate position vectors if not provided
-    if position_vectors is None:
-        position_vectors = [
-            generate_random_hrr(dimension, f"pos_{i}", seed=i * 1000)
-            for i in range(len(items))
-        ]
-    
-    if len(position_vectors) != len(items):
-        raise ValueError("Position vectors length must match items length")
-    
-    # Bind each item with its position and accumulate
-    sequence_vector = None
-    
-    for i, (item, pos) in enumerate(zip(items, position_vectors)):
-        bound_item = item.bind(pos)
-        
-        if sequence_vector is None:
-            sequence_vector = bound_item
-        else:
-            sequence_vector = sequence_vector.superpose(bound_item)
-    
-    sequence_vector.name = f"sequence_{len(items)}_items"
-    sequence_vector.metadata = {
-        'type': 'sequence',
-        'length': len(items),
-        'item_names': [item.name for item in items]
-    }
-    
-    return sequence_vector
-
-
-def create_memory_fingerprint(
-    content: str,
-    embedding: np.ndarray,
-    dimension: int = 1024,
-    metadata: Optional[Dict[str, Any]] = None
-) -> HRRVector:
-    """
-    Create HRR-based fingerprint for memory content.
-    
-    Combines content hash with embedding information to create
-    a holographic fingerprint that captures both semantic and
-    structural properties of the memory.
-    
-    Args:
-        content: Memory content string
-        embedding: Embedding vector
-        dimension: HRR vector dimension
-        metadata: Optional metadata
-        
-    Returns:
-        HRR fingerprint vector
-    """
-    # Create content-based seed from hash
-    content_hash = hashlib.sha256(content.encode('utf-8')).hexdigest()
-    content_seed = int(content_hash[:8], 16) % (2**31 - 1)
-    
-    # Generate content HRR vector
-    content_hrr = generate_random_hrr(dimension, "content", seed=content_seed)
-    
-    # Convert embedding to HRR dimension if needed
-    if len(embedding) != dimension:
-        # Pad or truncate embedding to match dimension
-        if len(embedding) < dimension:
-            padded_embedding = np.pad(embedding, (0, dimension - len(embedding)))
-        else:
-            padded_embedding = embedding[:dimension]
-        
-        embedding_hrr = HRRVector(
-            vector=padded_embedding,
-            dimension=dimension,
-            name="embedding",
-            metadata={'source': 'memory_embedding'}
-        )
+    # Normalize to unit vector
+    norm = np.linalg.norm(vector)
+    if norm > 0:
+        vector = vector / norm
     else:
-        embedding_hrr = HRRVector(
-            vector=embedding,
-            dimension=dimension,
-            name="embedding",
-            metadata={'source': 'memory_embedding'}
-        )
+        # Handle edge case where norm is 0 (very unlikely)
+        vector = np.ones(dim) / np.sqrt(dim)
     
-    # Bind content HRR with embedding HRR to create fingerprint
-    fingerprint = content_hrr.bind(embedding_hrr.normalize())
-    fingerprint.name = "memory_fingerprint"
-    fingerprint.metadata = {
-        'type': 'memory_fingerprint',
-        'content_hash': content_hash,
-        'embedding_dimension': len(embedding),
-        'memory_metadata': metadata or {}
-    }
-    
-    return fingerprint
+    return vector
 
-
-def compute_hrr_similarity_matrix(vectors: List[HRRVector]) -> np.ndarray:
+def bind_vectors(vec1: np.ndarray, vec2: np.ndarray) -> np.ndarray:
     """
-    Compute similarity matrix between all pairs of HRR vectors.
+    Bind two HRR vectors using circular convolution.
     
     Args:
-        vectors: List of HRR vectors
+        vec1: First vector
+        vec2: Second vector
         
     Returns:
-        Symmetric similarity matrix
+        Bound vector (circular convolution)
     """
-    n = len(vectors)
-    similarity_matrix = np.zeros((n, n))
+    if vec1.shape != vec2.shape:
+        raise ValueError(f"Vector dimensions must match: {vec1.shape} vs {vec2.shape}")
     
-    for i in range(n):
-        for j in range(i, n):  # Only compute upper triangle
-            if i == j:
-                similarity_matrix[i, j] = 1.0
-            else:
-                sim = vectors[i].similarity(vectors[j])
-                similarity_matrix[i, j] = sim
-                similarity_matrix[j, i] = sim  # Symmetric
+    # Use FFT for efficient circular convolution
+    fft1 = np.fft.fft(vec1)
+    fft2 = np.fft.fft(vec2)
     
-    return similarity_matrix
+    # Element-wise multiplication in frequency domain = convolution in time domain
+    bound_fft = fft1 * fft2
+    
+    # Convert back to time domain (real part only for real vectors)
+    bound = np.fft.ifft(bound_fft).real
+    
+    return bound
 
+def unbind_vectors(bound: np.ndarray, vec2: np.ndarray) -> np.ndarray:
+    """
+    Unbind HRR vectors using circular correlation.
+    
+    If bound = vec1  vec2 (where  is circular convolution),
+    then vec1  bound  vec2* (where  is circular correlation, vec2* is inverted)
+    
+    Args:
+        bound: Bound vector (result of previous binding)
+        vec2: Vector to unbind
+        
+    Returns:
+        Approximation of original first vector
+    """
+    if bound.shape != vec2.shape:
+        raise ValueError(f"Vector dimensions must match: {bound.shape} vs {vec2.shape}")
+    
+    # Invert vec2 (reverse order except first element for circular correlation)
+    vec2_inv = np.concatenate([[vec2[0]], vec2[1:][::-1]])
+    
+    # Circular correlation is circular convolution with inverted vector
+    return bind_vectors(bound, vec2_inv)
 
-class HRRMemoryBank:
+def similarity(vec1: np.ndarray, vec2: np.ndarray) -> float:
     """
-    Memory bank using HRR for associative storage and retrieval.
+    Compute cosine similarity between two vectors.
     
-    Provides high-level interface for storing and querying memories
-    using holographic reduced representations.
+    Args:
+        vec1: First vector
+        vec2: Second vector
+        
+    Returns:
+        Cosine similarity (-1 to 1)
     """
+    if vec1.shape != vec2.shape:
+        raise ValueError(f"Vector dimensions must match: {vec1.shape} vs {vec2.shape}")
     
-    def __init__(self, dimension: int = 1024):
-        """Initialize HRR memory bank with specified dimension."""
-        self.dimension = dimension
-        self.memories: Dict[str, HRRVector] = {}
-        self.associations: Dict[str, List[str]] = {}  # Track associations
-        
-    def store_memory(
-        self,
-        memory_id: str,
-        content: str,
-        embedding: np.ndarray,
-        metadata: Optional[Dict[str, Any]] = None
-    ) -> HRRVector:
-        """Store memory with HRR fingerprint."""
-        fingerprint = create_memory_fingerprint(content, embedding, self.dimension, metadata)
-        fingerprint.name = f"memory_{memory_id}"
-        fingerprint.metadata['memory_id'] = memory_id
-        
-        self.memories[memory_id] = fingerprint
-        return fingerprint
+    # Compute dot product (both should be unit vectors)
+    dot_product = np.dot(vec1, vec2)
     
-    def query_similar(self, query_vector: HRRVector, threshold: float = 0.7) -> List[Tuple[str, float]]:
-        """
-        Query for similar memories using HRR similarity.
-        
-        Returns:
-            List of (memory_id, similarity_score) tuples above threshold
-        """
-        results = []
-        
-        for memory_id, memory_vector in self.memories.items():
-            similarity = query_vector.similarity(memory_vector)
-            if similarity >= threshold:
-                results.append((memory_id, similarity))
-        
-        # Sort by similarity (descending)
-        results.sort(key=lambda x: x[1], reverse=True)
-        return results
+    # Clamp to [-1, 1] to handle numerical errors
+    return np.clip(dot_product, -1.0, 1.0)
+
+def superpose_vectors(vectors: list, weights: Optional[list] = None) -> np.ndarray:
+    """
+    Superpose (add) multiple HRR vectors with optional weights.
     
-    def create_association(self, memory_id1: str, memory_id2: str) -> Optional[HRRVector]:
-        """Create associative binding between two memories."""
-        if memory_id1 not in self.memories or memory_id2 not in self.memories:
-            return None
+    Args:
+        vectors: List of numpy arrays to superpose
+        weights: Optional list of weights (defaults to equal weights)
         
-        # Bind the two memory vectors
-        mem1 = self.memories[memory_id1]
-        mem2 = self.memories[memory_id2]
-        association = mem1.bind(mem2)
-        
-        association_id = f"{memory_id1}_{memory_id2}_assoc"
-        association.name = association_id
-        
-        # Store association and update tracking
-        self.memories[association_id] = association
-        
-        if memory_id1 not in self.associations:
-            self.associations[memory_id1] = []
-        if memory_id2 not in self.associations:
-            self.associations[memory_id2] = []
-        
-        self.associations[memory_id1].append(association_id)
-        self.associations[memory_id2].append(association_id)
-        
-        return association
+    Returns:
+        Superposed vector
+    """
+    if not vectors:
+        raise ValueError("Cannot superpose empty list of vectors")
     
-    def get_stats(self) -> Dict[str, Any]:
-        """Get memory bank statistics."""
-        return {
-            'dimension': self.dimension,
-            'total_memories': len(self.memories),
-            'total_associations': len(self.associations),
-            'memory_ids': list(self.memories.keys())
-        }
+    if weights is None:
+        weights = [1.0] * len(vectors)
+    
+    if len(weights) != len(vectors):
+        raise ValueError(f"Number of weights ({len(weights)}) must match number of vectors ({len(vectors)})")
+    
+    # Check all vectors have same dimension
+    dim = vectors[0].shape[0]
+    for i, vec in enumerate(vectors[1:], 1):
+        if vec.shape[0] != dim:
+            raise ValueError(f"Vector {i} has dimension {vec.shape[0]}, expected {dim}")
+    
+    # Weighted sum
+    result = np.zeros(dim)
+    for vec, weight in zip(vectors, weights):
+        result += weight * vec
+    
+    return result
+
+def create_concept_vector(
+    concept_name: str,
+    properties: Dict[str, Any],
+    dim: int = 256
+) -> np.ndarray:
+    """
+    Create a concept vector for a named concept with properties.
+    
+    Args:
+        concept_name: Name of the concept
+        properties: Properties/attributes of the concept
+        dim: Vector dimension
+        
+    Returns:
+        HRR reference vector for the concept
+    """
+    metadata = {
+        "concept": concept_name,
+        "properties": properties
+    }
+    
+    return reference_vector(concept_name, metadata, dim)
+
+def create_relation_vector(
+    relation_name: str,
+    relation_type: str = "generic",
+    dim: int = 256
+) -> np.ndarray:
+    """
+    Create a relation vector for binding concepts together.
+    
+    Args:
+        relation_name: Name of the relation
+        relation_type: Type/category of relation
+        dim: Vector dimension
+        
+    Returns:
+        HRR reference vector for the relation
+    """
+    metadata = {
+        "relation": relation_name,
+        "type": relation_type
+    }
+    
+    return reference_vector(relation_name, metadata, dim)
+
+# Utility functions for HRR operations
+
+def normalize_vector(vector: np.ndarray) -> np.ndarray:
+    """Normalize vector to unit length."""
+    norm = np.linalg.norm(vector)
+    if norm > 0:
+        return vector / norm
+    else:
+        return vector
+
+def vector_magnitude(vector: np.ndarray) -> float:
+    """Get magnitude (L2 norm) of vector."""
+    return np.linalg.norm(vector)
+
+def is_unit_vector(vector: np.ndarray, tolerance: float = 1e-6) -> bool:
+    """Check if vector is approximately unit length."""
+    magnitude = vector_magnitude(vector)
+    return abs(magnitude - 1.0) < tolerance
