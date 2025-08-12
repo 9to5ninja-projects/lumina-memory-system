@@ -1,0 +1,295 @@
+﻿{
+  "metadata": {
+    "name": "AI Research Papers Sample Dataset",
+    "version": "1.0.0", 
+    "description": "Small reproducible dataset for Lumina Memory System demos and E2E tests",
+    "created": "2025-08-11",
+    "document_count": 20,
+    "query_count": 10,
+    "purpose": "testing, validation, demonstration"
+  },
+  "documents": [
+    {
+      "id": "doc_001",
+      "title": "Attention Is All You Need",
+      "content": "The Transformer architecture revolutionized natural language processing by relying entirely on attention mechanisms. This approach eliminates recurrence and convolutions, enabling parallelization and achieving state-of-the-art results on translation tasks.",
+      "metadata": {
+        "category": "nlp",
+        "year": 2017,
+        "authors": ["Vaswani", "Shazeer", "Parmar"],
+        "venue": "NeurIPS"
+      }
+    },
+    {
+      "id": "doc_002", 
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers",
+      "content": "BERT introduces bidirectional training of transformers for language understanding. The model is pre-trained on a large corpus and fine-tuned for specific tasks, achieving significant improvements across eleven NLP tasks.",
+      "metadata": {
+        "category": "nlp",
+        "year": 2018,
+        "authors": ["Devlin", "Chang", "Lee", "Toutanova"],
+        "venue": "NAACL"
+      }
+    },
+    {
+      "id": "doc_003",
+      "title": "Generative Pre-trained Transformers (GPT)",
+      "content": "GPT demonstrates that unsupervised pre-training on diverse text corpora, followed by discriminative fine-tuning, can achieve strong performance on various language understanding tasks without task-specific architectures.",
+      "metadata": {
+        "category": "nlp", 
+        "year": 2018,
+        "authors": ["Radford", "Narasimhan", "Salimans", "Sutskever"],
+        "venue": "OpenAI"
+      }
+    },
+    {
+      "id": "doc_004",
+      "title": "ResNet: Deep Residual Learning for Image Recognition", 
+      "content": "Residual networks address the degradation problem in deep networks by introducing skip connections. This enables training of extremely deep networks with improved accuracy and convergence properties.",
+      "metadata": {
+        "category": "computer_vision",
+        "year": 2016,
+        "authors": ["He", "Zhang", "Ren", "Sun"],
+        "venue": "CVPR"
+      }
+    },
+    {
+      "id": "doc_005",
+      "title": "You Only Look Once: Real-Time Object Detection",
+      "content": "YOLO reframes object detection as a single regression problem, directly predicting bounding boxes and class probabilities from full images. This unified architecture enables real-time detection with competitive accuracy.",
+      "metadata": {
+        "category": "computer_vision",
+        "year": 2016,
+        "authors": ["Redmon", "Divvala", "Girshick", "Farhadi"], 
+        "venue": "CVPR"
+      }
+    },
+    {
+      "id": "doc_006",
+      "title": "Mastering the Game of Go with Deep Neural Networks",
+      "content": "AlphaGo combines Monte Carlo tree search with deep neural networks trained through reinforcement learning and self-play. This approach achieved superhuman performance in the ancient game of Go.",
+      "metadata": {
+        "category": "reinforcement_learning",
+        "year": 2016,
+        "authors": ["Silver", "Huang", "Maddison"],
+        "venue": "Nature"
+      }
+    },
+    {
+      "id": "doc_007",
+      "title": "Deep Q-Networks for Atari Games",
+      "content": "Deep Q-Networks (DQN) combine Q-learning with deep convolutional networks to learn control policies directly from high-dimensional sensory input. The approach achieves human-level performance on Atari games.",
+      "metadata": {
+        "category": "reinforcement_learning", 
+        "year": 2015,
+        "authors": ["Mnih", "Kavukcuoglu", "Silver"],
+        "venue": "Nature"
+      }
+    },
+    {
+      "id": "doc_008",
+      "title": "Variational Autoencoders for Representation Learning",
+      "content": "Variational autoencoders (VAEs) learn probabilistic latent representations by combining variational inference with deep learning. This framework enables both generation and representation learning in a unified model.",
+      "metadata": {
+        "category": "generative_models",
+        "year": 2014,
+        "authors": ["Kingma", "Welling"],
+        "venue": "ICLR"
+      }
+    },
+    {
+      "id": "doc_009",
+      "title": "Generative Adversarial Networks",
+      "content": "GANs pit two neural networks against each other in a game-theoretic framework. The generator learns to produce realistic data while the discriminator learns to distinguish real from fake, leading to impressive generative capabilities.",
+      "metadata": {
+        "category": "generative_models",
+        "year": 2014,
+        "authors": ["Goodfellow", "Pouget-Abadie", "Mirza"],
+        "venue": "NeurIPS"
+      }
+    },
+    {
+      "id": "doc_010",
+      "title": "Batch Normalization: Accelerating Deep Network Training",
+      "content": "Batch normalization addresses internal covariate shift by normalizing layer inputs. This technique enables higher learning rates, reduces sensitivity to initialization, and acts as a regularizer.",
+      "metadata": {
+        "category": "optimization",
+        "year": 2015,
+        "authors": ["Ioffe", "Szegedy"],
+        "venue": "ICML"
+      }
+    },
+    {
+      "id": "doc_011",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "content": "Adam computes adaptive learning rates for each parameter by maintaining running averages of gradients and their squared values. This method combines advantages of AdaGrad and RMSprop for efficient optimization.",
+      "metadata": {
+        "category": "optimization",
+        "year": 2015,
+        "authors": ["Kingma", "Ba"],
+        "venue": "ICLR"
+      }
+    },
+    {
+      "id": "doc_012",
+      "title": "Dropout: A Simple Way to Prevent Neural Networks from Overfitting",
+      "content": "Dropout randomly sets neurons to zero during training, preventing co-adaptation of feature detectors. This simple regularization technique significantly improves generalization in deep networks.",
+      "metadata": {
+        "category": "regularization",
+        "year": 2014,
+        "authors": ["Srivastava", "Hinton", "Krizhevsky"],
+        "venue": "JMLR"
+      }
+    },
+    {
+      "id": "doc_013",
+      "title": "Convolutional Neural Networks for Image Classification",
+      "content": "AlexNet demonstrates that deep convolutional neural networks can achieve breakthrough performance on image classification. Key innovations include ReLU activations, dropout, and GPU acceleration.",
+      "metadata": {
+        "category": "computer_vision",
+        "year": 2012,
+        "authors": ["Krizhevsky", "Sutskever", "Hinton"],
+        "venue": "NeurIPS"
+      }
+    },
+    {
+      "id": "doc_014",
+      "title": "Long Short-Term Memory Networks",
+      "content": "LSTM addresses the vanishing gradient problem in RNNs through gating mechanisms that control information flow. This architecture enables learning of long-term dependencies in sequential data.",
+      "metadata": {
+        "category": "sequence_modeling",
+        "year": 1997,
+        "authors": ["Hochreiter", "Schmidhuber"],
+        "venue": "Neural Computation"
+      }
+    },
+    {
+      "id": "doc_015",
+      "title": "Word2Vec: Efficient Estimation of Word Representations",
+      "content": "Word2Vec learns distributed representations of words using shallow neural networks. The skip-gram and continuous bag-of-words models capture semantic relationships through vector arithmetic.",
+      "metadata": {
+        "category": "nlp",
+        "year": 2013,
+        "authors": ["Mikolov", "Chen", "Corrado", "Dean"],
+        "venue": "ICLR"
+      }
+    },
+    {
+      "id": "doc_016",
+      "title": "Transfer Learning with Convolutional Networks",
+      "content": "Pre-trained convolutional networks can be effectively fine-tuned for new tasks with limited data. Transfer learning enables rapid adaptation and improved performance across diverse computer vision applications.",
+      "metadata": {
+        "category": "transfer_learning",
+        "year": 2014,
+        "authors": ["Donahue", "Jia", "Vinyals"],
+        "venue": "ICML"
+      }
+    },
+    {
+      "id": "doc_017",
+      "title": "Graph Neural Networks for Node Classification",
+      "content": "Graph convolutional networks extend deep learning to non-Euclidean domains by operating on graph-structured data. These methods aggregate information from node neighborhoods to learn representations.",
+      "metadata": {
+        "category": "graph_learning",
+        "year": 2017,
+        "authors": ["Kipf", "Welling"],
+        "venue": "ICLR"
+      }
+    },
+    {
+      "id": "doc_018",
+      "title": "Neural Architecture Search with Reinforcement Learning",
+      "content": "AutoML approaches use reinforcement learning to automatically discover neural architectures. This meta-learning framework can find architectures that outperform human-designed ones on specific tasks.",
+      "metadata": {
+        "category": "automl",
+        "year": 2017,
+        "authors": ["Zoph", "Le"],
+        "venue": "ICLR"
+      }
+    },
+    {
+      "id": "doc_019",
+      "title": "Federated Learning: Collaborative Machine Learning",
+      "content": "Federated learning enables model training across decentralized data sources without centralizing data. This approach preserves privacy while enabling collaborative learning across organizations.",
+      "metadata": {
+        "category": "distributed_learning",
+        "year": 2017,
+        "authors": ["McMahan", "Moore", "Ramage"],
+        "venue": "AISTATS"
+      }
+    },
+    {
+      "id": "doc_020",
+      "title": "Explainable AI: Making Black Boxes Interpretable",
+      "content": "LIME and SHAP provide model-agnostic explanations for machine learning predictions. These methods help understand individual predictions and model behavior through local and global interpretability.",
+      "metadata": {
+        "category": "explainability", 
+        "year": 2016,
+        "authors": ["Ribeiro", "Singh", "Guestrin"],
+        "venue": "KDD"
+      }
+    }
+  ],
+  "test_queries": [
+    {
+      "id": "query_001",
+      "query": "What are transformer neural networks?",
+      "expected_categories": ["nlp"],
+      "expected_docs": ["doc_001", "doc_002", "doc_003"]
+    },
+    {
+      "id": "query_002", 
+      "query": "How does object detection work in computer vision?",
+      "expected_categories": ["computer_vision"],
+      "expected_docs": ["doc_005", "doc_004", "doc_013"]
+    },
+    {
+      "id": "query_003",
+      "query": "Reinforcement learning for game playing",
+      "expected_categories": ["reinforcement_learning"],
+      "expected_docs": ["doc_006", "doc_007"]
+    },
+    {
+      "id": "query_004",
+      "query": "Generative models for creating new data",
+      "expected_categories": ["generative_models"],
+      "expected_docs": ["doc_008", "doc_009"]
+    },
+    {
+      "id": "query_005",
+      "query": "Optimization techniques for training neural networks",
+      "expected_categories": ["optimization"],
+      "expected_docs": ["doc_010", "doc_011"]
+    },
+    {
+      "id": "query_006",
+      "query": "How to prevent overfitting in deep learning?",
+      "expected_categories": ["regularization"],
+      "expected_docs": ["doc_012", "doc_010"]
+    },
+    {
+      "id": "query_007",
+      "query": "Learning word representations and embeddings",
+      "expected_categories": ["nlp"],
+      "expected_docs": ["doc_015", "doc_002"]
+    },
+    {
+      "id": "query_008",
+      "query": "Graph-based machine learning methods",
+      "expected_categories": ["graph_learning"],
+      "expected_docs": ["doc_017"]
+    },
+    {
+      "id": "query_009",
+      "query": "Automated machine learning and neural architecture search",
+      "expected_categories": ["automl"],
+      "expected_docs": ["doc_018"]
+    },
+    {
+      "id": "query_010",
+      "query": "Privacy-preserving machine learning approaches",
+      "expected_categories": ["distributed_learning"],
+      "expected_docs": ["doc_019"]
+    }
+  ]
+}
