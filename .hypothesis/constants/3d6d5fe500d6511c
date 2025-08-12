@@ -1,0 +1,4 @@
+# file: G:\My Drive\Colab Notebooks\lumina_memory_package\src\lumina_memory\__init__.py
+# hypothesis_version: 6.137.3
+
+['0.2.0-alpha', 'DEFAULT_HALF_LIFE', 'EmbeddingProvider', 'Lumina Team', 'LuminaConfig', 'Memory', 'MemoryEntry', 'MemorySystem', 'QueryResult', 'VectorStore', 'decay', 'dev@lumina.ai', 'forget', 'normalize_similarity', 'reinforce', 'setup_logging', 'superpose']

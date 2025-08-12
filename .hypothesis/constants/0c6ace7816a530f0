@@ -1,0 +1,4 @@
+# file: G:\My Drive\Colab Notebooks\lumina_memory_package\src\lumina_memory\memory_system.py
+# hypothesis_version: 6.137.3
+
+[0.0, 'access_count', 'avg_query_time', 'content', 'embedding_dimension', 'id', 'ltm_size', 'memory_hits', 'memory_misses', 'metadata', 'similarity', 'stm_size', 'timestamp', 'total_ingestions', 'total_memories', 'total_queries', 'vector_store_size']

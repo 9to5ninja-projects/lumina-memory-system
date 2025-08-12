@@ -1,0 +1,4 @@
+# file: G:\My Drive\Colab Notebooks\lumina_memory_package\src\lumina_memory\config.py
+# hypothesis_version: 6.137.3
+
+[0.7, 384, 1000, 10000, './cache', './data', './logs', './models', '1', 'INFO', 'LUMINA_BATCH_SIZE', 'LUMINA_DATA_DIR', 'LUMINA_DETERMINISTIC', 'LUMINA_DEVICE', 'LUMINA_EMBEDDING_DIM', 'LUMINA_LOGS_DIR', 'LUMINA_LOG_LEVEL', 'LUMINA_LTM_CAPACITY', 'LUMINA_MODELS_DIR', 'LUMINA_MODEL_NAME', 'LUMINA_RANDOM_SEED', 'LUMINA_STM_CAPACITY', 'LUMINA_VECTOR_STORE', 'LuminaConfig', 'PYTHONHASHSEED', 'all-MiniLM-L6-v2', 'batch_size', 'chromadb', 'cosine', 'cpu', 'data_dir', 'deterministic_mode', 'embedding_device', 'embedding_dim', 'euclidean', 'faiss', 'inner_product', 'log_level', 'logs_dir', 'ltm_capacity', 'lumina_config.json', 'models_dir', 'on', 'r', 'random_seed', 'similarity_metric', 'stm_capacity', 'true', 'vector_store_type', 'w', 'yes']
