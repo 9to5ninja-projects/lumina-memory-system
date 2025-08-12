@@ -4,335 +4,169 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-passing-green.svg)]()
 
-A production-ready holographic memory system for AI applications with vector storage, semantic search, and intelligent memory management capabilities.
+A production-ready holographic memory system for AI applications with pure functional kernel, event sourcing, and mathematical guarantees.
+
+##  Documentation
+
+- **[Memory Contract](docs/MEMORY_CONTRACT.md)** - Core specification and mathematical invariants
+- **[Development Roadmap](DEVELOPMENT_ROADMAP.md)** - Strategic architecture and milestones  
+- **[Developer Guide](READ_FIRST.md)** - Setup and contribution guidelines
+
+##  Architecture
+
+Lumina Memory is built on a **pure functional kernel** with **event sourcing**:
+
+- **Kernel**: Pure mathematical operations (superpose, reinforce, decay, forget)
+- **Event Store**: Append-only log of all state changes
+- **Index**: Materialized view rebuilt deterministically from events
+- **Policies**: Higher-level intelligence (novelty gates, consolidation, eviction)
+
+### Key Properties
+- **Deterministic**: Same events  same results
+- **Immutable**: Operations create new instances, never mutate
+- **Versioned**: Safe model upgrades with migration paths
+- **Rollback-capable**: Point-in-time recovery from event log
 
 ##  Quick Start
 
 ### Installation
 
-`ash
-# Install from source
-git clone https://github.com/lumina-ai/lumina-memory.git
-cd lumina-memory
+```bash
+# Install from source  
+git clone https://github.com/9to5ninja-projects/lumina-memory-system.git
+cd lumina-memory-system
 pip install -e .
-
-# Or install development version
-pip install -e .[dev]
-`
-
-### Basic Usage
-
-`python
-from lumina_memory import MemorySystem, LuminaConfig
-from lumina_memory.embeddings import SentenceTransformerEmbedding
-from lumina_memory.vector_store import FAISSVectorStore
-
-# Create components
-config = LuminaConfig()
-embedding_provider = SentenceTransformerEmbedding()
-vector_store = FAISSVectorStore(dimension=384)
-
-# Initialize memory system
-memory = MemorySystem(embedding_provider, vector_store, config)
-
-# Ingest memories
-memory_id = memory.ingest("Artificial intelligence is transforming technology.")
-
-# Recall relevant memories
-results = memory.recall("What is AI?", k=5)
-for result in results:
-    print(f"Similarity: {result['similarity']:.3f}")
-    print(f"Content: {result['content']}")
-`
-
-### Command Line Interface
-
-`ash
-# Check environment
-lumina-memory env
-
-# Create configuration
-lumina-memory config --create
-
-# Run interactive demo
-lumina-memory demo
-
-# Run benchmarks
-lumina-memory benchmark --docs 1000 --queries 100
-`
-
-##  Features
-
-- ** Intelligent Memory Management**: STM/LTM with automatic consolidation
-- ** Semantic Search**: Find relevant memories using natural language
-- ** High Performance**: Optimized vector storage with FAISS
-- ** Clean API**: Simple ingest() and ecall() methods
-- ** Configurable**: Environment-driven configuration
-- ** Metrics & Evaluation**: Built-in benchmarking and evaluation tools
-- ** Local Processing**: No external API dependencies required
-- ** Well Tested**: Comprehensive test suite with >90% coverage
-
-##  Architecture
-
-`
-
-                    Lumina Memory System                     
-
-  MemorySystem (Public API)                                 
-   ingest(content) -> memory_id                          
-   recall(query, k=5) -> List[results]                   
-   consolidate() -> int                                   
-   forget(memory_ids) -> int                              
-
-  Memory Management Layer                                    
-   Short-Term Memory (STM) - Recent memories             
-   Long-Term Memory (LTM) - Consolidated memories        
-   Memory Consolidation - STM  LTM based on importance  
-
-  Vector Storage Layer                                       
-   FAISSVectorStore - Fast similarity search             
-   InMemoryVectorStore - Simple in-memory storage        
-   ChromaDBVectorStore - Persistent vector database      
-
-  Embedding Layer                                            
-   SentenceTransformerEmbedding - Real embeddings        
-   MockEmbeddingProvider - Testing/development           
-   Custom providers - Extensible interface               
-
-`
-
-##  Performance
-
-**Benchmarks** (1000 docs, 100 queries, CPU):
-- **Ingestion**: ~50ms per document
-- **Query Latency**: <20ms (p95: <50ms)
-- **Throughput**: >100 queries/second
-- **Memory Usage**: <500MB for 10K documents
-- **Accuracy**: Recall@5: >0.85, Precision@5: >0.75
-
-##  Configuration
-
-### Environment Variables
-
-`ash
-# Core settings
-export LUMINA_EMBEDDING_DIM=384
-export LUMINA_VECTOR_STORE=faiss
-export LUMINA_SIMILARITY_METRIC=cosine
-
-# Memory settings  
-export LUMINA_STM_CAPACITY=1000
-export LUMINA_LTM_CAPACITY=10000
-
-# Model settings
-export LUMINA_MODEL_NAME=all-MiniLM-L6-v2
-export LUMINA_DEVICE=cpu
-
-# Paths
-export LUMINA_DATA_DIR=./data
-export LUMINA_MODELS_DIR=./models
-export LUMINA_LOGS_DIR=./logs
-
-# Determinism
-export LUMINA_RANDOM_SEED=42
-export LUMINA_DETERMINISTIC=true
-`
-
-### Configuration File
-
-`python
-from lumina_memory import LuminaConfig
-
-config = LuminaConfig(
-    embedding_dim=384,
-    vector_store_type="faiss",
-    similarity_metric="cosine",
-    stm_capacity=1000,
-    ltm_capacity=10000,
-    sentence_transformer_model="all-MiniLM-L6-v2",
-    embedding_device="cpu",
-    deterministic_mode=True,
-    random_seed=42,
-)
-
-# Save configuration
-config.save("lumina_config.json")
-`
-
-##  Testing
-
-`ash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=lumina_memory --cov-report=html
-
-# Run specific test categories
-pytest -m "not slow"  # Skip slow tests
-pytest -m "benchmark"  # Run only benchmarks
-
-# Run performance tests
-pytest tests/test_memory_system.py::test_performance_benchmark -v
-`
-
-##  Evaluation & Benchmarking
-
-`python
-from lumina_memory.eval import MemoryEvaluator, create_synthetic_dataset
-
-# Create test dataset
-documents, queries, ground_truth = create_synthetic_dataset(
-    num_documents=1000,
-    num_queries=100
-)
-
-# Setup evaluator
-evaluator = MemoryEvaluator(memory_system)
-
-# Run comprehensive evaluation
-results = evaluator.comprehensive_evaluation(queries, ground_truth)
-
-# Results include:
-# - Recall@K, Precision@K, NDCG@K
-# - Latency percentiles (p50, p95, p99)
-# - Throughput (queries per second)
-# - System statistics
-`
-
-##  Deployment Options
-
-### 1. **Local Development**
-`python
-# Already working! Use directly in Python
-memory = MemorySystem(embedding_provider, vector_store)
-`
-
-### 2. **Web Service** 
-`python
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-memory = MemorySystem(...)
-
-@app.route('/ingest', methods=['POST'])
-def ingest():
-    return jsonify({'id': memory.ingest(request.json['content'])})
-
-@app.route('/recall', methods=['POST'])  
-def recall():
-    return jsonify({'results': memory.recall(request.json['query'])})
-`
-
-### 3. **Docker Container**
-`dockerfile
-FROM python:3.11-slim
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "-m", "lumina_memory.cli", "demo"]
-`
-
-##  Development
-
-### Setup Development Environment
-
-`ash
-# Clone repository
-git clone https://github.com/lumina-ai/lumina-memory.git
-cd lumina-memory
 
 # Install development dependencies
 pip install -e .[dev]
+```
 
-# Install pre-commit hooks
-pre-commit install
+### Basic Usage
 
-# Run tests
-pytest
-`
+```python
+from lumina_memory import MemorySystem, Memory
+import numpy as np
 
-### Code Quality
+# Initialize system
+system = MemorySystem()
 
-`ash
-# Format code
-black src/ tests/
-isort src/ tests/
+# Create a memory
+memory = Memory(
+    id="example_001",
+    content="Cats are curious creatures",
+    embedding=np.random.rand(384),  # Your embedding
+    metadata={"source": "user", "topic": "animals"},
+    lineage=[],
+    created_at=1692000000.0,
+    schema_version="v1.0", 
+    model_version="all-MiniLM-L6-v2@sha256:abc123",
+    salience=1.0,
+    status="active"
+)
 
-# Lint code  
-flake8 src/ tests/
+# Store and query
+system.ingest(memory)
+results = system.recall("curious cats", k=5)
+```
 
-# Type checking
-mypy src/
-`
+##  Memory Algebra  
 
-##  API Reference
+The system implements a **memory algebra** with mathematical guarantees:
 
-### Core Classes
+```python
+# Superposition (associative, commutative)
+combined = superpose(memory_a, memory_b)
 
-#### MemorySystem
-Main interface for the memory system.
+# Reinforcement (monotonic, bounded)
+stronger = reinforce(memory, credit=0.5)
 
-**Methods:**
-- ingest(content: str, metadata: Dict = None) -> str: Add new memory
-- ecall(query: str, k: int = 5, filters: Dict = None) -> List[Dict]: Search memories
-- consolidate() -> int: Move STM memories to LTM
-- orget(memory_ids: List[str]) -> int: Remove memories
-- get_stats() -> Dict: Get system statistics
+# Decay (exponential, deterministic)
+aged = decay(memory, dt=24.0, half_life=168.0)
 
-#### LuminaConfig
-Configuration management.
+# Forgetting (non-destructive)
+forgotten = forget(memory, criteria={"reason": "outdated"})
+```
 
-**Methods:**
-- rom_env() -> LuminaConfig: Load from environment variables
-- save(path: str) -> None: Save to JSON file
-- load(path: str) -> LuminaConfig: Load from JSON file
-- alidate() -> bool: Validate configuration
+##  Event Sourcing
 
-#### EmbeddingProvider
-Abstract base for embedding providers.
+All operations are captured as events for complete auditability:
 
-**Implementations:**
-- SentenceTransformerEmbedding: Real embeddings using SentenceTransformers
-- MockEmbeddingProvider: Deterministic mock embeddings for testing
+```python
+# All state changes become events
+events = [
+    Event(type="INGEST", payload={"memory": memory}, ...),
+    Event(type="CONSOLIDATE", payload={"parents": [...], "result": combined}, ...),
+    Event(type="FORGET", payload={"memory_id": "...", "reason": "..."}, ...)
+]
 
-#### VectorStore
-Abstract base for vector storage.
+# Deterministic rebuild from events
+index = rebuild_index(event_store, target_offset=1000)
+```
 
-**Implementations:**
-- FAISSVectorStore: High-performance similarity search
-- InMemoryVectorStore: Simple in-memory storage for testing
+##  Testing
 
-##  Contributing
+The system includes comprehensive property-based testing:
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```bash
+# Run all tests
+pytest tests/ -v
 
-### Quick Contribution Steps
+# Run property tests (mathematical invariants)  
+pytest tests/test_kernel_properties.py -v
 
-1. Fork the repository
-2. Create a feature branch: git checkout -b feature-name
-3. Make changes and add tests
-4. Run tests: pytest
-5. Format code: lack . && isort .
-6. Submit a Pull Request
+# Run deterministic rebuild tests
+pytest tests/test_rebuild_deterministic.py -v
+
+# Local CI check
+python local_ci_check.py
+```
+
+##  Development
+
+### VS Code Setup
+The project includes VS Code tasks and settings:
+- `Ctrl+Shift+P`  "Tasks: Run Task"  Select test/lint tasks
+- Format on save enabled
+- Copilot integration configured
+
+### Branch Strategy
+- `main` - Stable releases
+- `feature/*` - New capabilities  
+- `job/*` - Background processing
+- `infra/*` - Infrastructure changes
+- `memory-system/*` - Core kernel changes
+
+### Required Checks
+- All tests pass (unit + property + integration)
+- Code formatting (black, ruff, isort)
+- Kernel invariants preserved
+- Deterministic rebuild validation
+
+##  Performance
+
+Designed for production workloads:
+- **Deterministic**: Reproducible results across runs
+- **Scalable**: Event sourcing enables horizontal scaling  
+- **Fast**: Optimized vector operations and indexing
+- **Safe**: Mathematical guarantees prevent data corruption
+
+##  Security
+
+- **Input validation**: Content filtering and PII detection
+- **Poisoning resistance**: Trust-weighted similarity scoring
+- **Feedback prevention**: Synthetic content tracking
+- **Audit trail**: Complete event history for forensics
 
 ##  License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-##  Links
+##  Contributing
 
-- **Documentation**: [docs/](docs/)
-- **GitHub**: [https://github.com/lumina-ai/lumina-memory](https://github.com/lumina-ai/lumina-memory)
-- **Issues**: [https://github.com/lumina-ai/lumina-memory/issues](https://github.com/lumina-ai/lumina-memory/issues)
+1. Read the [Memory Contract](docs/MEMORY_CONTRACT.md) 
+2. Follow the [Developer Guide](READ_FIRST.md)
+3. Create feature branches following naming conventions
+4. Ensure all tests pass including property tests
+5. Add migration notes for breaking changes
 
-##  Acknowledgments
-
-- **SentenceTransformers** for embedding models
-- **FAISS** for efficient vector similarity search  
-- **PyTorch** for deep learning infrastructure
-- **Rich** for beautiful terminal output
-
----
-
-**Built with  by the Lumina Team**
+**Note**: Changes to `src/lumina_memory/kernel.py` require special review as they affect mathematical guarantees.
