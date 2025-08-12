@@ -1,8 +1,9 @@
-﻿# Memory Contract
+# Memory Contract
 
 **Version:** 1.0  
 **Status:** Draft  
-**Last Updated:** August 11, 2025
+**Last Updated:** August 11, 2025  
+**System Version:** v0.1.0-alpha
 
 ## Overview
 
