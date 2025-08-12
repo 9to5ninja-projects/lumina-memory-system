@@ -1,0 +1,19 @@
+﻿# Code owners for critical kernel files
+# Requires approval for changes to pure functional core
+
+# Kernel (pure functional core) - requires careful review
+src/lumina_memory/kernel.py @9to5ninja-projects
+src/lumina_memory/event_store.py @9to5ninja-projects
+src/lumina_memory/rebuild.py @9to5ninja-projects
+
+# Core contracts and schemas
+src/lumina_memory/core.py @9to5ninja-projects
+src/lumina_memory/config.py @9to5ninja-projects
+
+# Property tests - critical for kernel integrity
+tests/test_kernel_properties.py @9to5ninja-projects
+tests/test_rebuild_deterministic.py @9to5ninja-projects
+
+# Documentation for contracts
+docs/memory_contract.md @9to5ninja-projects
+README.md @9to5ninja-projects
