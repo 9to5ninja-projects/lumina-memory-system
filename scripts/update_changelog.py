@@ -19,4 +19,4 @@ if __name__ == "__main__":
         sys.exit(1)
     version_tag = sys.argv[1]
     update_changelog(version_tag)
-    os.system(f"git add CHANGELOG.md && git commit -m 'Update changelog for {version_tag}' && git push")
+    os.system(f"git add \"CHANGELOG.md\" && git commit -m \"Update changelog for {version_tag}\" && git push")
