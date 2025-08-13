@@ -86,3 +86,14 @@ f753da2 Update changelog for v0.8.1
 1e4ea81 Update changelog for v0.8.1
 08ab586 Update changelog for v0.8.1
 8fc012f Update changelog for v0.8.1
+
+## Version v0.8.1
+df09ff3 Update changelog for v0.8.1
+6161938 Update changelog for v0.8.1
+9d738f1 Update changelog for v0.8.1
+f753da2 Update changelog for v0.8.1
+4c098a0 Update changelog for v0.8.1
+05a3ec5 Update changelog for v0.8.1
+1e4ea81 Update changelog for v0.8.1
+08ab586 Update changelog for v0.8.1
+8fc012f Update changelog for v0.8.1
