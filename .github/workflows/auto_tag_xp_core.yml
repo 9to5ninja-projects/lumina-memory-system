@@ -21,5 +21,5 @@ jobs:
           set -x
           TAG_NAME="auto-xp_core-$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
           git tag "$TAG_NAME"
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git remote set-url origin https://x-access-token:$GH_PAT@github.com/$GITHUB_REPOSITORY
           git push origin "$TAG_NAME"
