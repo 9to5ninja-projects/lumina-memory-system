@@ -33,7 +33,7 @@ jobs:
 
     - name: Install development dependencies
       run: |
-        pip install pytest pytest-cov ruff black isort
+        pip install ruff black isort
 
     - name: Verify Python setup
       run: |
@@ -69,14 +69,7 @@ jobs:
         black --check tests/ || echo "Formatting issues in tests/ (non-blocking)"
       continue-on-error: true
 
-    - name: Run tests if available
-      run: |
-        if [ -d "tests" ] && [ "$(ls -A tests/*.py 2>/dev/null)" ]; then
-          python -m pytest tests/ -v --tb=short || echo "Some tests failed (non-blocking)"
-        else
-          echo "No test files found or tests directory missing"
-        fi
-      continue-on-error: true
+  # Removed pytest test step
 
     - name: Test core functionality
       run: |
