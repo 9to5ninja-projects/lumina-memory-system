@@ -31,3 +31,6 @@ No changes since previous version.
 
 ## Version v0.8.0
 No changes since previous version.
+
+## Version v0.8.1
+No changes since previous version.
