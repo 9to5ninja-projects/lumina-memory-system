@@ -52,3 +52,10 @@ No changes since previous version.
 1e4ea81 Update changelog for v0.8.1
 08ab586 Update changelog for v0.8.1
 8fc012f Update changelog for v0.8.1
+
+## Version v0.8.1
+4c098a0 Update changelog for v0.8.1
+05a3ec5 Update changelog for v0.8.1
+1e4ea81 Update changelog for v0.8.1
+08ab586 Update changelog for v0.8.1
+8fc012f Update changelog for v0.8.1
