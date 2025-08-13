@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - '**'
+    tags:
+      - '*'
 jobs:
   tag:
     runs-on: ubuntu-latest
@@ -14,7 +16,8 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           echo "PAT is: $GH_PAT"
-      - name: Create tag and push (verbose)
+      - name: Create auto tag and push (only for non-version tags)
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
