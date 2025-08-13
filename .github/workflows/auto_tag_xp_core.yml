@@ -13,6 +13,11 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+      - name: Print PAT (debug)
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          echo "PAT is: $GH_PAT"
       - name: Create tag and push (verbose)
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
