@@ -1,0 +1,20 @@
+name: Auto Tag on Push
+on:
+  push:
+    branches:
+      - xp_core
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+      - name: Create tag
+        run: |
+          TAG_NAME="auto-xp_core-$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
