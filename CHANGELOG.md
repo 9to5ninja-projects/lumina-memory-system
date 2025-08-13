@@ -37,3 +37,7 @@ No changes since previous version.
 
 ## Version v0.8.1
 8fc012f Update changelog for v0.8.1
+
+## Version v0.8.1
+08ab586 Update changelog for v0.8.1
+8fc012f Update changelog for v0.8.1
