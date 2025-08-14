@@ -1,13 +1,22 @@
 name: Auto Tag and Changelog
 
 on:
-  push:
-    branches:
-      - main
+  # Disable automatic runs - manual only for now
+  workflow_dispatch:
+    inputs:
+      create_tag:
+        description: 'Create new tag'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+        - 'true'
+        - 'false'
 
 jobs:
   tag-and-changelog:
     runs-on: ubuntu-latest
+    if: github.event.inputs.create_tag == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,25 +25,8 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Bump version and create tag
-        id: bump_version
+      - name: Manual tagging notice
         run: |
-          NEW_TAG=$(python scripts/bump_version.py)
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
-          echo "New tag: $NEW_TAG"
-      
-      - name: Update changelog
-        run: |
-          python scripts/update_changelog.py ${{ steps.bump_version.outputs.new_tag }}
-      
-      - name: Commit and push changelog
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add CHANGELOG.md
-          git commit -m "Update changelog for ${{ steps.bump_version.outputs.new_tag }}" || echo "No changes to commit"
-          git push
-      
-      - name: Push tag
-        run: |
-          git push origin ${{ steps.bump_version.outputs.new_tag }}
+          echo "⚠️  AUTOMATED TAGGING DISABLED"
+          echo "Manual changelog management is now active"
+          echo "Tags should be created manually with proper semantic versioning"
