@@ -22,3 +22,7 @@
 ## Version v0.8.2
 - f59107e FINAL: Stop workflow recursion and clean changelog
 - 3acf314 Clean up duplicate changelog entry after merge
+
+## Version v0.8.2
+- f59107e FINAL: Stop workflow recursion and clean changelog
+- 3acf314 Clean up duplicate changelog entry after merge
