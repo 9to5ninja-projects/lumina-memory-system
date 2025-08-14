@@ -29,3 +29,8 @@
 - d79458d EMERGENCY: Disable auto_tag_xp_core.yml workflow
 - f59107e FINAL: Stop workflow recursion and clean changelog
 - 3acf314 Clean up duplicate changelog entry after merge
+
+## Version auto-xp_core-20250813-96d5594
+- 1e966b5 Merge main into xp_core - resolve conflicts by keeping main's state
+- 15315d4 Add automated version tagging and changelog workflow
+- 84a127f Squash all history: clean repo for new development phase
