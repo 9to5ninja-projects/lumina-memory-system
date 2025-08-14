@@ -1,4 +1,4 @@
-﻿"""Core data structures for Lumina Memory System."""
+"""Core data structures for Lumina Memory System."""
 
 import uuid
 from dataclasses import dataclass, field
@@ -76,6 +76,6 @@ class QueryError(LuminaError):
     pass
 
 
-class MemoryError(LuminaError):
+class EmbeddingVersionError(LuminaError):`n    """Embedding version compatibility errors."""`n    pass`n`n`nclass MemoryError(LuminaError):
     """Memory management errors."""
     pass
