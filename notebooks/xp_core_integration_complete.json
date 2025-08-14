@@ -1,0 +1,80 @@
+{
+  "branches": {
+    "main": {
+      "name": "main",
+      "head": "149ce5ad918b6961adea7d6d6f554adf233c0378704a32c40b63fe1e1344e5dc"
+    },
+    "feature/test": {
+      "name": "feature/test",
+      "head": "a4f6f0c4873ec056de343eac3d19a70d58e445aaba6e0eb750861bdcaf4e4394"
+    },
+    "feature/holographic_memory": {
+      "name": "feature/holographic_memory",
+      "head": "d7f3ae5c4e8522dbbfec3d5227abbeb2e1b64e1dc5313d006817affc8d55adcf"
+    }
+  },
+  "commits": {
+    "df6fec1edaaa3ea05cd0abcdb10e70b28c489846e78026cd3d67b8a4708a8f44": {
+      "id": "df6fec1edaaa3ea05cd0abcdb10e70b28c489846e78026cd3d67b8a4708a8f44",
+      "parent": null,
+      "timestamp": 1755149959.3428743,
+      "message": "Initial commit",
+      "changes": {
+        "feature": "init",
+        "details": "Initial notebook setup"
+      }
+    },
+    "149ce5ad918b6961adea7d6d6f554adf233c0378704a32c40b63fe1e1344e5dc": {
+      "id": "149ce5ad918b6961adea7d6d6f554adf233c0378704a32c40b63fe1e1344e5dc",
+      "parent": "df6fec1edaaa3ea05cd0abcdb10e70b28c489846e78026cd3d67b8a4708a8f44",
+      "timestamp": 1755149959.3432376,
+      "message": "Added versioning system",
+      "changes": {
+        "feature": "versioning",
+        "details": "Added versioning system"
+      }
+    },
+    "a4f6f0c4873ec056de343eac3d19a70d58e445aaba6e0eb750861bdcaf4e4394": {
+      "id": "a4f6f0c4873ec056de343eac3d19a70d58e445aaba6e0eb750861bdcaf4e4394",
+      "parent": null,
+      "timestamp": 1755149959.3437178,
+      "message": "Feature branch commit",
+      "changes": {
+        "feature": "test",
+        "details": "Testing branch"
+      }
+    },
+    "ba95f6e1b2fbfd2a9da01fdfefa0ed43852d83ceb33d91a624d71ea5e2c17e19": {
+      "id": "ba95f6e1b2fbfd2a9da01fdfefa0ed43852d83ceb33d91a624d71ea5e2c17e19",
+      "parent": null,
+      "timestamp": 1755149985.0091474,
+      "message": "Mathematical core integration complete",
+      "changes": {
+        "memory_unit": "implemented with decay mathematics",
+        "hrr_core": "circular convolution and correlation working",
+        "integration": "ready for holographic memory operations"
+      }
+    },
+    "d7f3ae5c4e8522dbbfec3d5227abbeb2e1b64e1dc5313d006817affc8d55adcf": {
+      "id": "d7f3ae5c4e8522dbbfec3d5227abbeb2e1b64e1dc5313d006817affc8d55adcf",
+      "parent": "ba95f6e1b2fbfd2a9da01fdfefa0ed43852d83ceb33d91a624d71ea5e2c17e19",
+      "timestamp": 1755149985.0106425,
+      "message": "Complete integration test passed - XP core ready",
+      "changes": {
+        "test_status": "success",
+        "components_tested": [
+          "versioning",
+          "memory_units",
+          "hrr_math",
+          "decay",
+          "consolidation"
+        ],
+        "hrr_recovery": [
+          0.7522563934326172,
+          0.27588319778442383
+        ],
+        "consolidation_factor": 1.0
+      }
+    }
+  }
+}
