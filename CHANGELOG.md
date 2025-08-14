@@ -34,3 +34,9 @@
 - 1e966b5 Merge main into xp_core - resolve conflicts by keeping main's state
 - 15315d4 Add automated version tagging and changelog workflow
 - 84a127f Squash all history: clean repo for new development phase
+
+## Version auto-xp_core-20250813-96d5594
+- 3c7a0d9 Add xp_core_design.ipynb from gist - comprehensive design document for XP core system
+- 1e966b5 Merge main into xp_core - resolve conflicts by keeping main's state
+- 15315d4 Add automated version tagging and changelog workflow
+- 84a127f Squash all history: clean repo for new development phase
