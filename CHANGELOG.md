@@ -20,3 +20,6 @@
 
 ## Version v0.8.2
 - No meaningful changes since previous version.
+
+## Version v0.8.2
+- No meaningful changes since previous version.
