@@ -1,30 +1,8 @@
 #!/usr/bin/env python3
-"""
-DEPRECATED: Automatic version bumping is disabled.
-
-This script was used for automatic version bumping but is now deprecated
-in favor of manual versioning strategy. See VERSIONING_STRATEGY.md for details.
-
-Automated versioning caused issues with:
-- Incorrect chronological ordering
-- Mixed versioning schemes
-- Redundant changelog entries
-- Wrong dates and metadata
-
-Use manual git tagging instead:
-  git tag -a v0.2.0-alpha -m "Release message"
-  git push origin v0.2.0-alpha
-"""
+"""Simple version bumping script that increments patch version"""
 import subprocess
 import sys
 
-def main():
-    print("⚠️  DEPRECATED: Automatic version bumping is disabled")
-    print("📖 See VERSIONING_STRATEGY.md for manual versioning process")
-    print("🏷️  Create tags manually: git tag -a v0.2.0-alpha -m 'message'")
-    sys.exit(1)
-
-# Legacy code preserved for reference but disabled
 def get_latest_tag():
     """Get the latest git tag or default to v0.0.0"""
     try:
@@ -59,4 +37,7 @@ def create_tag(new_tag):
     return new_tag
 
 if __name__ == "__main__":
-    main()  # This will exit with error message
+    latest_tag = get_latest_tag()
+    new_tag = bump_version(latest_tag)
+    created_tag = create_tag(new_tag)
+    print(created_tag)
