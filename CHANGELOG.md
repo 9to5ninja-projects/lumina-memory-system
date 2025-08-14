@@ -17,3 +17,6 @@
 - No specific changes recorded
 ## Version v0.8.2-test
 - c9975be Fix: Simplify changelog structure to prevent recursive growth
+
+## Version v0.8.2
+- No meaningful changes since previous version.
