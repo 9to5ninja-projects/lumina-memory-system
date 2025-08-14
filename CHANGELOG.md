@@ -43768,3 +43768,8 @@ f753da2 Update changelog for v0.8.1
 1e4ea81 Update changelog for v0.8.1
 08ab586 Update changelog for v0.8.1
 8fc012f Update changelog for v0.8.1
+
+## Version v0.8.1
+fatal: ambiguous argument 'v0.8.1..@': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
