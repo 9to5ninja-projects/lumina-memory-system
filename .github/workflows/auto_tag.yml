@@ -2,9 +2,9 @@ name: Auto Tag on Push
 on:
   push:
     branches:
-      - '**'
+      - 'disabled-temporarily'  # Temporarily disabled to stop recursion
     tags:
-      - '*'
+      - 'disabled-temporarily'
 
 jobs:
   tag:

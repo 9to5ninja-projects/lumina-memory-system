@@ -1,0 +1,32 @@
+name: Auto Tag on Push
+on:
+  push:
+    branches:
+      - '**'
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+      - name: Print PAT (debug)
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          echo "PAT is: $GH_PAT"
+      - name: Create tag and push (verbose)
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -x
+          TAG_NAME="auto-xp_core-$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
+          git tag "$TAG_NAME"
+          git fetch --unshallow || true
+          git remote remove authtemp || true
+          git remote add authtemp https://x-access-token:$GH_PAT@github.com/$GITHUB_REPOSITORY
+          git push authtemp "$TAG_NAME"

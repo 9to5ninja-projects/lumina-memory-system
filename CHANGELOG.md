@@ -15,14 +15,6 @@
 
 ## Version v0.7.5
 - No specific changes recorded
-## Version v0.8.2-test
-- c9975be Fix: Simplify changelog structure to prevent recursive growth
-
-## Version v0.8.2
-- No meaningful changes since previous version.
-
 ## Version v0.8.2
 - 3acf314 Clean up duplicate changelog entry after merge
-
-## Version v0.8.2
-- 3acf314 Clean up duplicate changelog entry after merge
+- ddd1ce3 fix: Resolve recursive changelog generation issue
