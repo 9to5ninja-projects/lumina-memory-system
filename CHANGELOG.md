@@ -18,3 +18,7 @@
 ## Version v0.8.2
 - 3acf314 Clean up duplicate changelog entry after merge
 - ddd1ce3 fix: Resolve recursive changelog generation issue
+
+## Version v0.8.2
+- f59107e FINAL: Stop workflow recursion and clean changelog
+- 3acf314 Clean up duplicate changelog entry after merge
