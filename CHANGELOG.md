@@ -23,3 +23,6 @@
 
 ## Version v0.8.2
 - 3acf314 Clean up duplicate changelog entry after merge
+
+## Version v0.8.2
+- 3acf314 Clean up duplicate changelog entry after merge
