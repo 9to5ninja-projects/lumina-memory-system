@@ -1,0 +1,39 @@
+# 🔮 Future Dependencies
+# Optional packages for extended functionality
+# Install only when specific features are needed
+
+# ===== GOOGLE COLAB SUPPORT =====
+# For Colab notebook compatibility
+google-colab>=1.0.0        # Colab utilities and drive mounting
+
+# ===== INTERACTIVE VISUALIZATION =====
+# Advanced plotting beyond matplotlib
+plotly>=5.24.0             # Interactive web-based plots
+bokeh>=3.6.0               # Web applications for data visualization
+
+# ===== PERFORMANCE OPTIMIZATION =====
+# Numerical performance enhancements
+numba>=0.63.0              # JIT compilation for numerical functions
+dask>=2025.1.0             # Parallel computing for large datasets
+
+# ===== DATA FORMATS =====
+# Extended file format support
+h5py>=3.12.1               # HDF5 arrays and datasets
+zarr>=3.0.0                # Cloud-optimized chunked arrays
+xarray>=2025.1.0           # Labeled multi-dimensional arrays
+
+# ===== IMAGE PROCESSING =====
+# If future notebooks need image handling
+Pillow>=11.1.0             # PIL image processing
+opencv-python>=4.10.0      # Computer vision library
+
+# ===== NOTEBOOK ENHANCEMENTS =====
+# Enhanced Jupyter/Colab experience
+ipympl>=0.9.4              # Matplotlib widgets for Jupyter
+jupyter-widgets>=8.1.7     # Interactive widgets (already in dev requirements)
+
+# ===== ML/AI ECOSYSTEM EXTENSIONS =====
+# Additional ML libraries for future expansion
+optuna>=4.1.0              # Hyperparameter optimization
+wandb>=0.18.7              # Experiment tracking
+mlflow>=2.20.0             # ML lifecycle management

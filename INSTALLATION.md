@@ -111,6 +111,12 @@ scikit-learn>=1.7.1       # Machine learning utilities
 pandas>=2.3.1             # Data manipulation
 ```
 
+### **Visualization & Graphics**
+```txt
+matplotlib>=3.10.5        # Plotting and visualization
+networkx>=3.4.2           # Graph structures and network analysis
+```
+
 ### **Security & Utilities**
 ```txt
 cryptography>=45.0.6      # Cryptographic operations

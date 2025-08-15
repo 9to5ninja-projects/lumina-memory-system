@@ -9,6 +9,10 @@ numpy>=2.3.2
 scipy>=1.16.1
 scikit-learn>=1.7.1
 
+# Visualization & Graphics
+matplotlib>=3.10.5
+networkx>=3.4.2
+
 # Machine Learning & NLP
 spacy>=3.8.7
 transformers>=4.55.0
