@@ -9,10 +9,8 @@
 
 ## 🔥 **Latest: Production NLP Integration (v0.3.0-alpha)**
 
-- **SpaCy 3.8.7+ Integration**: Complete production NLP pipeline
-- **59 Classes Mapped**: 15 SpaCy classes + 5 bridge integrations
-- **4 Conflict Resolutions**: SpaCy-Lumina integration strategies
-- **Industrial ML Stack**: Transformers, FAISS, PyTorch integration
+[Update: August 14, 2025]
+- **EnhancedLexicalAttributor**: Advanced modular attribution class supporting weighted scoring (mathematical, vector, entity). Use for research, prototyping, and semantic-rich tasks. Configure weights for fine-tuning as needed.
 
 ## 🚀 **Quick Start**
 

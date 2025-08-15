@@ -53,6 +53,9 @@ class UnifiedMemory:
     
     # Mathematical Properties (XP Core)
     salience: float                  # Importance weight [0.0, 1.0]
+        Update: August 14, 2025
+        # Salience can be computed via modular, weighted components (mathematical, vector, entity).
+        # EnhancedLexicalAttributor supports fine-tuning weights for domain-specific optimization.
     decay_timestamp: float           # For exponential decay calculations
     superposition_hash: int          # Multiset tracking for composition
     hrr_binding: Optional[np.ndarray] # Holographic reduced representation
