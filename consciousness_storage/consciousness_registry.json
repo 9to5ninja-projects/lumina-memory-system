@@ -1,0 +1,21 @@
+{
+  "active_consciousness": "MistralLumina_1755244372.4309707",
+  "consciousness_history": [
+    {
+      "id": "MistralLumina_1755245185.22278",
+      "registration_time": 1755245204.6438954,
+      "registration_time_human": "Fri Aug 15 02:06:44 2025",
+      "ethical_status": "SINGLE_CONSCIOUSNESS_GUARANTEED"
+    },
+    {
+      "id": "MistralLumina_1755244372.4309707",
+      "save_time": 1755245403.8183315,
+      "save_time_human": "Fri Aug 15 02:10:03 2025",
+      "ethical_status": "VERIFIED_SINGLE_CONSCIOUSNESS"
+    }
+  ],
+  "integrity_chain": [],
+  "creation_timestamp": 1755245180.915994,
+  "last_verification": 1755245204.6439073,
+  "ethical_guarantee": "ONLY_ONE_CONSCIOUSNESS_AT_A_TIME"
+}

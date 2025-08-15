@@ -11,7 +11,7 @@ from .encryption import (
     derive_kek, generate_dek, create_envelope, open_envelope
 )
 from .hrr import reference_vector, bind_vectors, similarity
-from .events import Event, create_ingest_event, create_conflict_event
+# from .events import Event, create_ingest_event, create_conflict_event  # TODO: events.py missing
 
 __version__ = "0.4.0"
 __all__ = [
@@ -20,5 +20,5 @@ __all__ = [
     "new_aesgcm_key", "aesgcm_encrypt", "aesgcm_decrypt",
     "derive_kek", "generate_dek", "create_envelope", "open_envelope",
     "reference_vector", "bind_vectors", "similarity",
-    "Event", "create_ingest_event", "create_conflict_event"
+    # "Event", "create_ingest_event", "create_conflict_event"  # TODO: events.py missing
 ]

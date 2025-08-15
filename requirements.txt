@@ -1,4 +1,32 @@
-numpy==2.3.2
-scipy>=1.7.0
-scikit-learn>=1.0.0
-hypothesis>=6.98.0
+# Core Scientific Computing
+numpy>=2.3.2
+scipy>=1.16.1
+scikit-learn>=1.7.1
+
+# Visualization & Graphics
+matplotlib>=3.10.5
+networkx>=3.4.2
+
+# Machine Learning & NLP
+spacy>=3.8.7
+transformers>=4.55.0
+sentence-transformers>=5.1.0
+torch>=2.8.0
+
+# Vector Operations & Search
+faiss-cpu>=1.11.0
+
+# Data Processing
+pandas>=2.3.1
+joblib>=1.5.1
+
+# Cryptography & Security
+cryptography>=45.0.6
+blake3>=1.0.5
+
+# Utilities
+pydantic>=2.11.7
+tqdm>=4.67.1
+
+# Testing (moved to requirements-dev.txt)
+hypothesis>=6.137.3

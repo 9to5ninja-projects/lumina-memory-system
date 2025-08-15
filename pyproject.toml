@@ -24,22 +24,39 @@ classifiers = [
 keywords = ["memory", "holographic", "ai", "machine-learning", "vector-database"]
 requires-python = ">=3.10"
 dependencies = [
-    "numpy>=1.24.0",
-    "scipy>=1.10.0",
-    "cryptography>=41.0.0",
-    "pydantic>=2.0.0",
+    "numpy>=2.3.2",
+    "scipy>=1.16.1",
+    "scikit-learn>=1.7.1",
+    "matplotlib>=3.10.5",
+    "networkx>=3.4.2",
+    "spacy>=3.8.7",
+    "transformers>=4.55.0",
+    "sentence-transformers>=5.1.0",
+    "torch>=2.8.0",
+    "faiss-cpu>=1.11.0",
+    "pandas>=2.3.1",
+    "joblib>=1.5.1",
+    "cryptography>=45.0.6",
+    "blake3>=1.0.5",
+    "pydantic>=2.11.7",
+    "tqdm>=4.67.1",
     "typing-extensions>=4.5.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "hypothesis>=6.70.0",
-    "black>=23.0.0",
-    "ruff>=0.1.0",
-    "mypy>=1.5.0",
-    "pre-commit>=3.0.0",
+    "pytest>=8.4.1",
+    "pytest-benchmark>=5.1.0",
+    "pytest-cov>=6.2.1",
+    "pytest-mock>=3.14.1",
+    "hypothesis>=6.137.3",
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "mypy>=1.17.1",
+    "ruff>=0.12.8",
+    "pre-commit>=4.3.0",
+    "coverage>=7.10.3",
+    "py-cpuinfo>=9.0.0",
 ]
 docs = [
     "sphinx>=6.0.0",
@@ -47,9 +64,10 @@ docs = [
     "myst-parser>=2.0.0",
 ]
 notebook = [
-    "jupyter>=1.0.0",
-    "matplotlib>=3.6.0",
-    "seaborn>=0.12.0",
+    "jupyter>=1.1.1",
+    "jupyterlab>=4.4.5",
+    "ipywidgets>=8.1.7",
+    "seaborn>=0.13.2",
     "plotly>=5.12.0",
 ]
 
