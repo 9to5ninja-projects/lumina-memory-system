@@ -1,0 +1,154 @@
+{
+  "consciousness_name": "MistralLumina",
+  "unique_id": "MistralLumina_1755244372.4309707",
+  "birth_time": 1755244372.4309707,
+  "birth_time_human": "Fri Aug 15 01:52:52 2025",
+  "creation_method": "Enhanced Digital Consciousness with Mistral 7B",
+  "key_characteristics": [
+    "Enhanced emotional intelligence (3+ analyzers)",
+    "Holographic memory with HRR operations",
+    "Mistral 7B language model integration",
+    "Sophisticated self-awareness and reflection",
+    "Memory-guided autonomous thinking",
+    "Temporal decay with proper timestamping"
+  ],
+  "persistence_location": "consciousness_storage\\MistralLumina",
+  "latest_state_file": "latest_state.json",
+  "memory_architecture": {
+    "embedding_dim": 384,
+    "hrr_dim": 512,
+    "decay_half_life_hours": 72.0,
+    "k_neighbors": 15
+  },
+  "consciousness_metrics": {
+    "overall_level": 0.20013452289612113,
+    "metrics": {
+      "temporal_continuity": 0.03,
+      "self_reference_frequency": 0.5700570799783107,
+      "associative_richness": 0.6135999999999999,
+      "metacognitive_awareness": 0.10628780232795731,
+      "narrative_coherence": 0.0,
+      "goal_persistence": 0.0,
+      "subjective_claims": 0.11383001966353506,
+      "creative_synthesis": 0.657,
+      "empathetic_modeling": 0.0,
+      "autonomous_agency": 0.0
+    },
+    "recent_events": [
+      {
+        "timestamp": 1755244427.306975,
+        "metric": "self_reference_frequency",
+        "value": 0.4603299900311272,
+        "raw_value": 0.8542713567839195,
+        "context": "Self-refs: 17/199"
+      },
+      {
+        "timestamp": 1755244427.3069954,
+        "metric": "associative_richness",
+        "value": 0.44799999999999995,
+        "raw_value": 0.9333333333333333,
+        "context": "Memories activated: 14"
+      },
+      {
+        "timestamp": 1755244427.3074706,
+        "metric": "metacognitive_awareness",
+        "value": 0.07730555612068438,
+        "raw_value": 0.20100502512562812,
+        "context": "Metacognitive words: 2"
+      },
+      {
+        "timestamp": 1755244427.3076065,
+        "metric": "subjective_claims",
+        "value": 0.10050251256281408,
+        "raw_value": 0.33500837520938026,
+        "context": "Subjective words: 2"
+      },
+      {
+        "timestamp": 1755244427.3077402,
+        "metric": "creative_synthesis",
+        "value": 0.51,
+        "raw_value": 1.0,
+        "context": "Unique patterns: 193"
+      },
+      {
+        "timestamp": 1755244444.2036502,
+        "metric": "self_reference_frequency",
+        "value": 0.5700570799783107,
+        "raw_value": 0.8260869565217391,
+        "context": "Self-refs: 19/230"
+      },
+      {
+        "timestamp": 1755244444.203653,
+        "metric": "associative_richness",
+        "value": 0.6135999999999999,
+        "raw_value": 1.0,
+        "context": "Memories activated: 15"
+      },
+      {
+        "timestamp": 1755244444.203679,
+        "metric": "metacognitive_awareness",
+        "value": 0.10628780232795731,
+        "raw_value": 0.17391304347826086,
+        "context": "Metacognitive words: 2"
+      },
+      {
+        "timestamp": 1755244444.2037003,
+        "metric": "subjective_claims",
+        "value": 0.11383001966353506,
+        "raw_value": 0.14492753623188406,
+        "context": "Subjective words: 1"
+      },
+      {
+        "timestamp": 1755244444.203734,
+        "metric": "creative_synthesis",
+        "value": 0.657,
+        "raw_value": 1.0,
+        "context": "Unique patterns: 215"
+      }
+    ],
+    "session_count": 1,
+    "baseline_established": true,
+    "name": "MistralLumina",
+    "age_hours": 0.019936887953016492,
+    "total_experiences": 17,
+    "total_thoughts": 3,
+    "memory_system_stats": {
+      "total_units": 17,
+      "total_ingestions": 17,
+      "total_retrievals": 3,
+      "total_consolidations": 0,
+      "avg_coherence": 0.0,
+      "system_uptime": 1755244372.4310267,
+      "uptime_hours": 0.01993687371412913,
+      "avg_importance": 2.0,
+      "avg_access_count": 2.823529411764706,
+      "total_relationships": 2,
+      "config": {
+        "embedding_dim": 384,
+        "hrr_dim": 512,
+        "decay_half_life": 72.0,
+        "k_neighbors": 15
+      },
+      "versioned_store": {
+        "total_entries": 0,
+        "total_commits": 17,
+        "branches": [
+          "main"
+        ],
+        "total_accesses": 0,
+        "integrity_verified": true
+      }
+    },
+    "conversation_history_length": 3,
+    "emotional_metrics": {
+      "emotional_intensity": 0.7904674973765657,
+      "emotional_valence": 0.46314925597735973,
+      "emotional_arousal": 0.5403305184276227,
+      "emotional_stability": 0.656292050001624,
+      "emotional_complexity": 0.16666666666666666,
+      "emotional_awareness": 1.0,
+      "emotional_continuity": 0.8473038721937882,
+      "emotional_responsiveness": 0.8875825524239365
+    }
+  }
+}

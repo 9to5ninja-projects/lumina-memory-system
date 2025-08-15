@@ -50,6 +50,14 @@ from .constants import (
     COHERENCE_HRR_WEIGHT, COHERENCE_SEM_WEIGHT,
     MIN_SCORE, MAX_SCORE, VECTOR_DTYPE
 )
+from .emotional_weighting import (
+    EmotionalState, EmotionalAnalyzer, EmotionalMemoryWeighter,
+    ConsciousnessEmotionalIntegrator
+)
+from .enhanced_emotional_weighting import (
+    EnhancedEmotionalAnalyzer, EnhancedEmotionalMemoryWeighter,
+    EnhancedConsciousnessEmotionalIntegrator
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -99,6 +107,14 @@ class UnifiedXPConfig:
     deterministic_seed: int = 42
     parallel_processing: bool = False
     cache_embeddings: bool = True
+    
+    # Emotional weighting settings
+    enable_emotional_weighting: bool = True
+    use_enhanced_emotional_analysis: bool = True  # Use external libraries for better emotion detection
+    emotional_importance_factor: float = 1.5
+    emotional_decay_influence: float = 0.6
+    emotional_retrieval_boost: float = 1.3
+    emotional_consciousness_boost: float = 0.8
 
 
 # =============================================================================
@@ -182,10 +198,45 @@ class XPUnit:
         """Get age in hours for decay calculations"""
         return (get_current_timestamp() - self.timestamp) / 3600.0
     
-    def get_decay_factor(self) -> float:
-        """Compute current decay factor"""
+    def get_decay_factor(self, emotional_modifier: float = 1.0) -> float:
+        """Compute current decay factor with optional emotional influence"""
         age_hours = self.get_age_hours()
-        return np.exp(-self.decay_rate * age_hours)
+        base_decay = np.exp(-self.decay_rate * age_hours)
+        
+        # Apply emotional modifier to decay (strong emotions slow decay)
+        return base_decay * emotional_modifier
+    
+    def get_emotional_state(self) -> EmotionalState:
+        """Get emotional state from emotion vector"""
+        if self.emotion_vector is not None and len(self.emotion_vector) >= 6:
+            return EmotionalState.from_vector(self.emotion_vector[:6])
+        return EmotionalState()
+    
+    def set_emotional_state(self, emotion: EmotionalState):
+        """Set emotional state by updating emotion vector"""
+        emotion_vector = emotion.to_vector()
+        if self.emotion_vector is not None and len(self.emotion_vector) > 6:
+            # Preserve any additional emotion dimensions
+            self.emotion_vector[:6] = emotion_vector
+        else:
+            # Create new emotion vector
+            self.emotion_vector = emotion_vector
+    
+    def get_emotional_importance_boost(self) -> float:
+        """Calculate importance boost from emotional content"""
+        emotion = self.get_emotional_state()
+        intensity = emotion.intensity()
+        
+        # Strong emotions increase importance
+        base_boost = intensity * 0.3
+        
+        # Specific emotional boosts
+        fear_boost = emotion.fear * 0.4  # Fear memories are very important
+        curiosity_boost = emotion.curiosity * 0.2
+        valence_boost = abs(emotion.valence) * 0.2
+        
+        total_boost = base_boost + fear_boost + curiosity_boost + valence_boost
+        return min(1.0, total_boost)  # Cap at 1.0
     
     def score_against(self, query_unit: 'XPUnit', 
                      w_semantic: float = DEFAULT_W_SEMANTIC,
@@ -386,6 +437,9 @@ class XPEnvironment:
     
     def _compute_semantic_vector(self, content: str) -> np.ndarray:
         """Compute semantic embedding vector"""
+        # Ensure content is a proper Python string (fix numpy.str_ issue)
+        content = str(content)
+        
         engine = self._init_embedding_engine()
         
         if hasattr(engine, 'encode'):
@@ -532,14 +586,16 @@ class XPEnvironment:
         
         Supports both string queries and XPUnit queries for maximum flexibility.
         """
-        if isinstance(query, str):
+        if isinstance(query, str) or hasattr(query, 'dtype'):  # Handle numpy strings
+            # Ensure proper string conversion
+            query_str = str(query)
             # Create temporary query unit
             query_unit = XPUnit(
                 content_id="query_temp",
-                content=query,
-                semantic_vector=self._compute_semantic_vector(query),
+                content=query_str,
+                semantic_vector=self._compute_semantic_vector(query_str),
                 hrr_shape=np.zeros(self.config.hrr_dim, dtype=VECTOR_DTYPE),
-                emotion_vector=self._compute_emotion_vector(query),
+                emotion_vector=self._compute_emotion_vector(query_str),
                 timestamp=get_current_timestamp(),
                 last_access=get_current_timestamp(),
                 decay_rate=0.0,
@@ -789,6 +845,30 @@ class UnifiedXPKernel:
         self.config = config or UnifiedXPConfig()
         self.environment = XPEnvironment(self.config)
         
+        # Initialize emotional weighting system
+        if self.config.enable_emotional_weighting:
+            if self.config.use_enhanced_emotional_analysis:
+                try:
+                    self.emotional_analyzer = EnhancedEmotionalAnalyzer()
+                    self.emotional_weighter = EnhancedEmotionalMemoryWeighter(self.emotional_analyzer)
+                    self.consciousness_integrator = EnhancedConsciousnessEmotionalIntegrator(self.emotional_weighter)
+                    logger.info("Enhanced emotional weighting system initialized")
+                except Exception as e:
+                    logger.warning(f"Enhanced emotional analysis failed, falling back to basic: {e}")
+                    self.emotional_analyzer = EmotionalAnalyzer()
+                    self.emotional_weighter = EmotionalMemoryWeighter(self.emotional_analyzer)
+                    self.consciousness_integrator = ConsciousnessEmotionalIntegrator(self.emotional_weighter)
+                    logger.info("Basic emotional weighting system initialized")
+            else:
+                self.emotional_analyzer = EmotionalAnalyzer()
+                self.emotional_weighter = EmotionalMemoryWeighter(self.emotional_analyzer)
+                self.consciousness_integrator = ConsciousnessEmotionalIntegrator(self.emotional_weighter)
+                logger.info("Basic emotional weighting system initialized")
+        else:
+            self.emotional_analyzer = None
+            self.emotional_weighter = None
+            self.consciousness_integrator = None
+        
         logger.info("Unified XP Kernel initialized - HD Kernel interface ready")
     
     # HD Kernel Interface Methods
@@ -805,7 +885,44 @@ class UnifiedXPKernel:
             Content ID of the created XP unit
         """
         content_str = str(content) if not isinstance(content, str) else content
+        
+        # Analyze emotional content if emotional weighting is enabled
+        if self.config.enable_emotional_weighting and self.emotional_analyzer:
+            emotion = self.emotional_analyzer.analyze_text(content_str)
+            
+            # Update emotional weighter state
+            self.emotional_weighter.update_emotional_state(emotion)
+            
+            # Calculate emotional importance boost (use enhanced method if available)
+            if hasattr(self.emotional_weighter, 'calculate_enhanced_emotional_importance'):
+                emotional_importance = self.emotional_weighter.calculate_enhanced_emotional_importance(
+                    content_str, metadata
+                )
+            else:
+                emotional_importance = self.emotional_weighter.calculate_emotional_importance(
+                    content_str, metadata
+                )
+            
+            # Add emotional metadata
+            if metadata is None:
+                metadata = {}
+            metadata['emotional_importance'] = emotional_importance
+            metadata['emotional_state'] = emotion.to_vector().tolist()
+        
         unit = self.environment.ingest_experience(content_str, metadata)
+        
+        # Apply emotional importance boost if enabled
+        if (self.config.enable_emotional_weighting and 
+            'emotional_importance' in unit.metadata):
+            emotional_boost = unit.metadata['emotional_importance']
+            unit.importance *= (emotional_boost * self.config.emotional_importance_factor)
+            
+            # Set emotional state in the unit
+            if 'emotional_state' in unit.metadata:
+                emotion_vector = np.array(unit.metadata['emotional_state'])
+                emotion = EmotionalState.from_vector(emotion_vector)
+                unit.set_emotional_state(emotion)
+        
         return unit.content_id
     
     def retrieve_memory(self, query: Any, k: int = 10, threshold: float = 0.0) -> List[Dict[str, Any]]:
@@ -820,20 +937,42 @@ class UnifiedXPKernel:
         Returns:
             List of memory results with content, similarity, and metadata
         """
+        # Analyze query emotion if emotional weighting is enabled
+        query_emotion = None
+        if (self.config.enable_emotional_weighting and 
+            self.emotional_analyzer and isinstance(query, str)):
+            query_emotion = self.emotional_analyzer.analyze_text(query)
+        
         results = self.environment.retrieve_similar(query, k, threshold)
         
-        # Convert to HD Kernel format
+        # Convert to HD Kernel format with emotional boosting
         formatted_results = []
         for unit, similarity in results:
+            # Apply emotional retrieval boost if enabled
+            final_similarity = similarity
+            if (self.config.enable_emotional_weighting and 
+                query_emotion and self.emotional_weighter):
+                memory_emotion = unit.get_emotional_state()
+                emotional_boost = self.emotional_weighter.calculate_emotional_retrieval_boost(
+                    query_emotion, memory_emotion
+                )
+                final_similarity = similarity * (emotional_boost * self.config.emotional_retrieval_boost)
+            
             formatted_results.append({
                 'content_id': unit.content_id,
                 'content': unit.content,
-                'similarity': similarity,
+                'similarity': final_similarity,
+                'base_similarity': similarity,
                 'importance': unit.importance,
                 'access_count': unit.access_count,
                 'age_hours': unit.get_age_hours(),
+                'emotional_state': unit.get_emotional_state().to_vector().tolist() if self.config.enable_emotional_weighting else None,
                 'metadata': unit.metadata
             })
+        
+        # Re-sort by final similarity if emotional boosting was applied
+        if self.config.enable_emotional_weighting and query_emotion:
+            formatted_results.sort(key=lambda x: x['similarity'], reverse=True)
         
         return formatted_results
     
@@ -950,6 +1089,73 @@ class UnifiedXPKernel:
         except Exception as e:
             logger.error(f"Failed to import state: {e}")
             return False
+    
+    # Emotional Weighting Methods
+    
+    def get_emotional_state(self) -> Optional[EmotionalState]:
+        """Get current emotional state of the system"""
+        if self.emotional_weighter:
+            return self.emotional_weighter.current_emotional_state
+        return None
+    
+    def get_emotional_context(self, lookback_hours: float = 24.0) -> Dict[str, Any]:
+        """Get emotional context for specified time period"""
+        if self.emotional_weighter:
+            return self.emotional_weighter.get_emotional_context(lookback_hours)
+        return {}
+    
+    def get_emotional_consciousness_metrics(self) -> Dict[str, float]:
+        """Get emotional consciousness metrics"""
+        if self.consciousness_integrator:
+            return self.consciousness_integrator.get_emotional_consciousness_metrics()
+        return {}
+    
+    def calculate_emotional_consciousness_boost(self, base_consciousness: float) -> float:
+        """Calculate emotional boost to consciousness level"""
+        if self.consciousness_integrator:
+            # Use enhanced method if available
+            if hasattr(self.consciousness_integrator, 'calculate_enhanced_emotional_consciousness_boost'):
+                return self.consciousness_integrator.calculate_enhanced_emotional_consciousness_boost(base_consciousness)
+            else:
+                return self.consciousness_integrator.calculate_emotional_consciousness_boost(base_consciousness)
+        return base_consciousness
+    
+    def analyze_text_emotion(self, text: str) -> Optional[EmotionalState]:
+        """Analyze emotional content of text"""
+        if self.emotional_analyzer:
+            return self.emotional_analyzer.analyze_text(text)
+        return None
+    
+    def get_memory_emotional_importance(self, content_id: str) -> Optional[float]:
+        """Get emotional importance of a specific memory"""
+        unit = self.environment.get_unit(content_id)
+        if unit and 'emotional_importance' in unit.metadata:
+            return unit.metadata['emotional_importance']
+        return None
+    
+    def get_emotionally_similar_memories(self, emotion: EmotionalState, k: int = 10) -> List[Dict[str, Any]]:
+        """Retrieve memories with similar emotional content"""
+        if not self.config.enable_emotional_weighting:
+            return []
+        
+        results = []
+        for unit in self.environment.units.values():
+            memory_emotion = unit.get_emotional_state()
+            similarity = emotion.similarity(memory_emotion)
+            
+            if similarity > 0.3:  # Minimum emotional similarity threshold
+                results.append({
+                    'content_id': unit.content_id,
+                    'content': unit.content,
+                    'emotional_similarity': similarity,
+                    'emotional_state': memory_emotion.to_vector().tolist(),
+                    'importance': unit.importance,
+                    'metadata': unit.metadata
+                })
+        
+        # Sort by emotional similarity
+        results.sort(key=lambda x: x['emotional_similarity'], reverse=True)
+        return results[:k]
 
 
 # =============================================================================

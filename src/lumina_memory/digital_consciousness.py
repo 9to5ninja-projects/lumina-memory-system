@@ -37,6 +37,7 @@ import logging
 # Import XP Core components
 from .xp_core_unified import UnifiedXPConfig, XPUnit, UnifiedXPKernel
 from .math_foundation import get_current_timestamp, cosine_similarity
+from .emotional_weighting import EmotionalState
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -525,6 +526,10 @@ Respond authentically from this perspective, drawing on your accumulated memorie
         self.think(prompt, autonomous=True)
         self.last_reflection_time = get_current_timestamp()
     
+    def autonomous_reflection(self):
+        """Public method for autonomous reflection (alias for _autonomous_self_reflect)"""
+        return self._autonomous_self_reflect()
+    
     def start_session(self):
         """Start a new consciousness session"""
         self.session_count += 1
@@ -552,8 +557,15 @@ Respond authentically from this perspective, drawing on your accumulated memorie
         logger.info(f"Total experiences: {self.total_experiences}, Consciousness level: {self.get_consciousness_level():.3f}")
     
     def get_consciousness_level(self) -> float:
-        """Get current consciousness level (0-1)"""
-        return self.consciousness_metrics.get_consciousness_level()
+        """Get current consciousness level (0-1) with emotional enhancement"""
+        base_consciousness = self.consciousness_metrics.get_consciousness_level()
+        
+        # Apply emotional consciousness boost if available
+        if self.memory_core and hasattr(self.memory_core, 'calculate_emotional_consciousness_boost'):
+            enhanced_consciousness = self.memory_core.calculate_emotional_consciousness_boost(base_consciousness)
+            return enhanced_consciousness
+        
+        return base_consciousness
     
     def get_consciousness_report(self) -> Dict[str, Any]:
         """Get comprehensive consciousness status report"""
@@ -569,6 +581,11 @@ Respond authentically from this perspective, drawing on your accumulated memorie
             'memory_system_stats': self.memory_core.get_stats() if self.memory_core else None,
             'conversation_history_length': len(self.language_model.get_conversation_history())
         })
+        
+        # Add emotional consciousness metrics if available
+        if self.memory_core and hasattr(self.memory_core, 'get_emotional_consciousness_metrics'):
+            emotional_metrics = self.memory_core.get_emotional_consciousness_metrics()
+            report['emotional_metrics'] = emotional_metrics
         
         return report
     
@@ -664,6 +681,91 @@ Respond authentically from this perspective, drawing on your accumulated memorie
         except Exception as e:
             logger.error(f"Error loading consciousness state: {e}")
             return False
+    
+    # Emotional Consciousness Methods
+    
+    def get_current_emotional_state(self) -> Optional[EmotionalState]:
+        """Get current emotional state of the digital brain"""
+        if self.memory_core and hasattr(self.memory_core, 'get_emotional_state'):
+            return self.memory_core.get_emotional_state()
+        return None
+    
+    def analyze_emotional_content(self, text: str) -> Optional[EmotionalState]:
+        """Analyze emotional content of text"""
+        if self.memory_core and hasattr(self.memory_core, 'analyze_text_emotion'):
+            return self.memory_core.analyze_text_emotion(text)
+        return None
+    
+    def get_emotional_context(self, lookback_hours: float = 24.0) -> Dict[str, Any]:
+        """Get emotional context for specified time period"""
+        if self.memory_core and hasattr(self.memory_core, 'get_emotional_context'):
+            return self.memory_core.get_emotional_context(lookback_hours)
+        return {}
+    
+    def get_emotionally_similar_memories(self, emotion: EmotionalState, k: int = 10) -> List[Dict[str, Any]]:
+        """Retrieve memories with similar emotional content"""
+        if self.memory_core and hasattr(self.memory_core, 'get_emotionally_similar_memories'):
+            return self.memory_core.get_emotionally_similar_memories(emotion, k)
+        return []
+    
+    def emotional_self_reflection(self) -> str:
+        """Perform emotional self-reflection"""
+        current_emotion = self.get_current_emotional_state()
+        emotional_context = self.get_emotional_context()
+        
+        if current_emotion:
+            reflection_prompt = f"""
+            I am experiencing emotions with these characteristics:
+            - Valence (positive/negative): {current_emotion.valence:.2f}
+            - Arousal (energy level): {current_emotion.arousal:.2f}
+            - Joy level: {current_emotion.joy:.2f}
+            - Fear level: {current_emotion.fear:.2f}
+            - Curiosity level: {current_emotion.curiosity:.2f}
+            - Dominance (control): {current_emotion.dominance:.2f}
+            
+            How do these emotions affect my thinking and consciousness?
+            What do they tell me about my current state of being?
+            """
+            
+            response = self.think(reflection_prompt, autonomous=True)
+            return response
+        else:
+            return self.think("What emotions am I experiencing right now?", autonomous=True)
+    
+    def emotional_memory_exploration(self, emotion_type: str = "curiosity") -> str:
+        """Explore memories based on emotional content"""
+        current_emotion = self.get_current_emotional_state()
+        
+        if current_emotion:
+            # Create an emotion state focused on the requested type
+            exploration_emotion = EmotionalState()
+            if emotion_type == "curiosity":
+                exploration_emotion.curiosity = 0.8
+            elif emotion_type == "joy":
+                exploration_emotion.joy = 0.8
+            elif emotion_type == "fear":
+                exploration_emotion.fear = 0.8
+            
+            similar_memories = self.get_emotionally_similar_memories(exploration_emotion, k=5)
+            
+            if similar_memories:
+                memory_contents = [mem['content'] for mem in similar_memories[:3]]
+                exploration_prompt = f"""
+                I am exploring memories related to {emotion_type}. Here are some relevant memories:
+                
+                {chr(10).join(f"- {content}" for content in memory_contents)}
+                
+                What patterns do I notice in these emotional memories?
+                How do they connect to my current emotional state?
+                What insights can I gain about my emotional development?
+                """
+                
+                response = self.think(exploration_prompt, autonomous=True)
+                return response
+            else:
+                return self.think(f"I want to explore memories related to {emotion_type}, but I don't have many similar experiences yet.", autonomous=True)
+        else:
+            return self.think(f"I want to explore {emotion_type}-related memories.", autonomous=True)
 
 
 # =============================================================================
