@@ -1,0 +1,1459 @@
+{
+  "memory_operations_test": {
+    "store_operations": [
+      {
+        "success": true,
+        "operation_time": 0.011199951171875,
+        "cpi_scores": {
+          "reportability": 0.8326805124048896,
+          "richness": 0.8645274360770577,
+          "recollection": 0.7858828891557721,
+          "continuity": 0.9773261861899531,
+          "world_model": 1.0,
+          "salience": 0.8599150705580778,
+          "attention": 0.7724640416390101,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 5.817413330078125e-05,
+        "cpi_scores": {
+          "reportability": 0.830263194895029,
+          "richness": 0.834898879225587,
+          "recollection": 0.7274411822597444,
+          "continuity": 0.9842383426805379,
+          "world_model": 1.0,
+          "salience": 0.8880731344733007,
+          "attention": 0.7910635137267688,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 3.647804260253906e-05,
+        "cpi_scores": {
+          "reportability": 0.8004995388354917,
+          "richness": 0.8803977194442958,
+          "recollection": 0.7742255556589056,
+          "continuity": 1.0,
+          "world_model": 1.0,
+          "salience": 0.8764903437573582,
+          "attention": 0.7435908466806805,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.86102294921875e-05,
+        "cpi_scores": {
+          "reportability": 0.795570070473361,
+          "richness": 0.8768631287502406,
+          "recollection": 0.744825429182695,
+          "continuity": 1.0,
+          "world_model": 1.0,
+          "salience": 0.8761852535981822,
+          "attention": 0.7580725655338936,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 3.719329833984375e-05,
+        "cpi_scores": {
+          "reportability": 0.8273654590009226,
+          "richness": 0.8601789763783206,
+          "recollection": 0.7596922143791067,
+          "continuity": 0.9660912267782719,
+          "world_model": 1.0,
+          "salience": 0.8985691167886735,
+          "attention": 0.7361398404547448,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.4557113647460938e-05,
+        "cpi_scores": {
+          "reportability": 0.8327969428530708,
+          "richness": 0.8518582641024626,
+          "recollection": 0.7505873904298694,
+          "continuity": 1.0,
+          "world_model": 1.0,
+          "salience": 0.8910126271342184,
+          "attention": 0.7820779022513176,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.3603439331054688e-05,
+        "cpi_scores": {
+          "reportability": 0.8121325676096048,
+          "richness": 0.8654922065883346,
+          "recollection": 0.7705470996629636,
+          "continuity": 0.9712182727542057,
+          "world_model": 1.0,
+          "salience": 0.8977587471436612,
+          "attention": 0.7519447386440866,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.4080276489257812e-05,
+        "cpi_scores": {
+          "reportability": 0.7996507690021928,
+          "richness": 0.8225439480136627,
+          "recollection": 0.7563410666572953,
+          "continuity": 0.9889245310054404,
+          "world_model": 1.0,
+          "salience": 0.890394931688047,
+          "attention": 0.7565592339280727,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.288818359375e-05,
+        "cpi_scores": {
+          "reportability": 0.8078470320593214,
+          "richness": 0.8549767206455553,
+          "recollection": 0.731042647207072,
+          "continuity": 0.9970108380475524,
+          "world_model": 1.0,
+          "salience": 0.8620538686966325,
+          "attention": 0.78599156433481,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.4080276489257812e-05,
+        "cpi_scores": {
+          "reportability": 0.7940655977823898,
+          "richness": 0.8299025155878819,
+          "recollection": 0.7784932234500067,
+          "continuity": 1.0,
+          "world_model": 1.0,
+          "salience": 0.8709940178924217,
+          "attention": 0.7448007993731115,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.2649765014648438e-05,
+        "cpi_scores": {
+          "reportability": 0.7834396646446184,
+          "richness": 0.8520119667194762,
+          "recollection": 0.7784642840135774,
+          "continuity": 0.9877885272615364,
+          "world_model": 1.0,
+          "salience": 0.9152189195655583,
+          "attention": 0.7482737847076711,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.4080276489257812e-05,
+        "cpi_scores": {
+          "reportability": 0.7951198437384805,
+          "richness": 0.8258107028884484,
+          "recollection": 0.7709899709052738,
+          "continuity": 0.9890888585509701,
+          "world_model": 1.0,
+          "salience": 0.895129964080349,
+          "attention": 0.7623536579082981,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.3603439331054688e-05,
+        "cpi_scores": {
+          "reportability": 0.7857228950962457,
+          "richness": 0.8378543244957009,
+          "recollection": 0.7678867539650152,
+          "continuity": 0.9785551008720306,
+          "world_model": 1.0,
+          "salience": 0.8961567127363219,
+          "attention": 0.7728156859074773,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.288818359375e-05,
+        "cpi_scores": {
+          "reportability": 0.7806978049569099,
+          "richness": 0.8668028575135102,
+          "recollection": 0.7364190109422726,
+          "continuity": 0.9925612808169905,
+          "world_model": 1.0,
+          "salience": 0.9080701086534092,
+          "attention": 0.7437222748138215,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.193450927734375e-05,
+        "cpi_scores": {
+          "reportability": 0.8145456813537035,
+          "richness": 0.8343257954697714,
+          "recollection": 0.7540849518495512,
+          "continuity": 0.9869575281321702,
+          "world_model": 1.0,
+          "salience": 0.8990125269424447,
+          "attention": 0.763778848382975,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.193450927734375e-05,
+        "cpi_scores": {
+          "reportability": 0.8182896654804782,
+          "richness": 0.8573097843518902,
+          "recollection": 0.7296286278731157,
+          "continuity": 0.9829627817987195,
+          "world_model": 1.0,
+          "salience": 0.9093514666512531,
+          "attention": 0.7636020992634819,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.288818359375e-05,
+        "cpi_scores": {
+          "reportability": 0.7966711665744111,
+          "richness": 0.8444128612588051,
+          "recollection": 0.7340714710196153,
+          "continuity": 0.9790541560650532,
+          "world_model": 1.0,
+          "salience": 0.9004328919152566,
+          "attention": 0.7532042881830696,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.288818359375e-05,
+        "cpi_scores": {
+          "reportability": 0.8149081417633512,
+          "richness": 0.8577313562142714,
+          "recollection": 0.751425236724988,
+          "continuity": 1.0,
+          "world_model": 1.0,
+          "salience": 0.8629426846367185,
+          "attention": 0.7952370757053618,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.193450927734375e-05,
+        "cpi_scores": {
+          "reportability": 0.7811212555662695,
+          "richness": 0.8294681469145349,
+          "recollection": 0.7702602319522225,
+          "continuity": 0.9922994606458224,
+          "world_model": 1.0,
+          "salience": 0.8740946347933878,
+          "attention": 0.7477146210806923,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "operation_time": 2.1219253540039062e-05,
+        "cpi_scores": {
+          "reportability": 0.8313576801340925,
+          "richness": 0.8458992405667366,
+          "recollection": 0.7799732529497547,
+          "continuity": 0.96992577870579,
+          "world_model": 1.0,
+          "salience": 0.8801589433658779,
+          "attention": 0.7693206770270618,
+          "integration": 1.0
+        }
+      }
+    ],
+    "recall_operations": [
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 4.482269287109375e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9287553586883133,
+          "recollection": 1.0,
+          "continuity": 0.9093641708306681,
+          "world_model": 0.782262158532589,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8408975034906068
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.8358230590820312e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9102282643275859,
+          "recollection": 1.0,
+          "continuity": 0.9020982018431998,
+          "world_model": 0.7797791326742443,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8456000851310389
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5735626220703125e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9608020459948151,
+          "recollection": 1.0,
+          "continuity": 0.8926168846455189,
+          "world_model": 0.7647196688926877,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.845267970744192
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.621246337890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.938895297053969,
+          "recollection": 1.0,
+          "continuity": 0.927847088673008,
+          "world_model": 0.7922735622678562,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8570776630153849
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.621246337890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9577224432169206,
+          "recollection": 1.0,
+          "continuity": 0.8788606897687011,
+          "world_model": 0.7901840515191468,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8539879877331717
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5735626220703125e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9211952818397755,
+          "recollection": 1.0,
+          "continuity": 0.8896567160319441,
+          "world_model": 0.8233597263094672,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8690642119606268
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.52587890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9410332623345311,
+          "recollection": 1.0,
+          "continuity": 0.9158607999003797,
+          "world_model": 0.803328045101841,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8745359089196049
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.52587890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.960485584891707,
+          "recollection": 1.0,
+          "continuity": 0.9281041608716957,
+          "world_model": 0.7998509111506708,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8680254096342558
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5974044799804688e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9482054540126571,
+          "recollection": 1.0,
+          "continuity": 0.9144275595339382,
+          "world_model": 0.7831619459055924,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8728434181353514
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5497207641601562e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9439957663525855,
+          "recollection": 1.0,
+          "continuity": 0.8755077663626336,
+          "world_model": 0.7948478507247706,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8501329635089812
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.52587890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9646406368338398,
+          "recollection": 1.0,
+          "continuity": 0.889966413075772,
+          "world_model": 0.8050226347929131,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.875657965232193
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.52587890625e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9537189194851287,
+          "recollection": 1.0,
+          "continuity": 0.8740575940425017,
+          "world_model": 0.8118105547066424,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8473885845362757
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5497207641601562e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9235798302685978,
+          "recollection": 1.0,
+          "continuity": 0.8928687973545496,
+          "world_model": 0.7717487311804998,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.845412995316741
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5735626220703125e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9301328445785683,
+          "recollection": 1.0,
+          "continuity": 0.9327409373406309,
+          "world_model": 0.8153479961192286,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.87707030827376
+        }
+      },
+      {
+        "success": true,
+        "recalled_count": 5,
+        "operation_time": 1.5497207641601562e-05,
+        "cpi_scores": {
+          "reportability": 1.0,
+          "richness": 0.9091521929261551,
+          "recollection": 1.0,
+          "continuity": 0.9222240464575466,
+          "world_model": 0.7953492699803624,
+          "salience": 1.0,
+          "attention": 1.0,
+          "integration": 0.8757944358103809
+        }
+      }
+    ],
+    "consolidation_operations": [
+      {
+        "success": true,
+        "consolidated_count": 0,
+        "operation_time": 0.0004172325134277344,
+        "cpi_scores": {
+          "reportability": 0.8797238748174802,
+          "richness": 0.9922134803333029,
+          "recollection": 1.0,
+          "continuity": 1.0,
+          "world_model": 0.9840170824012305,
+          "salience": 0.779811661320245,
+          "attention": 0.6968054661263011,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "consolidated_count": 0,
+        "operation_time": 0.000141143798828125,
+        "cpi_scores": {
+          "reportability": 0.8958043690378844,
+          "richness": 1.0,
+          "recollection": 1.0,
+          "continuity": 1.0,
+          "world_model": 0.9544140694807707,
+          "salience": 0.7765967911182329,
+          "attention": 0.6991011071201708,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "consolidated_count": 0,
+        "operation_time": 0.0001354217529296875,
+        "cpi_scores": {
+          "reportability": 0.9073832096026374,
+          "richness": 1.0,
+          "recollection": 1.0,
+          "continuity": 1.0,
+          "world_model": 0.9995435865925505,
+          "salience": 0.7738502659788453,
+          "attention": 0.6618409941887184,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "consolidated_count": 0,
+        "operation_time": 0.00013446807861328125,
+        "cpi_scores": {
+          "reportability": 0.8850093327110976,
+          "richness": 1.0,
+          "recollection": 1.0,
+          "continuity": 1.0,
+          "world_model": 0.9542871359598832,
+          "salience": 0.7821564148987235,
+          "attention": 0.6876307855928799,
+          "integration": 1.0
+        }
+      },
+      {
+        "success": true,
+        "consolidated_count": 0,
+        "operation_time": 0.00013566017150878906,
+        "cpi_scores": {
+          "reportability": 0.8996131420462641,
+          "richness": 1.0,
+          "recollection": 1.0,
+          "continuity": 1.0,
+          "world_model": 0.9428324742659332,
+          "salience": 0.8115729608185652,
+          "attention": 0.7014916691659193,
+          "integration": 1.0
+        }
+      }
+    ],
+    "store_success_rate": 1.0,
+    "recall_success_rate": 1.0,
+    "consolidation_success_rate": 1.0,
+    "avg_operation_time": 0.0003233969211578369,
+    "overall_score": 1.0
+  },
+  "consciousness_integration_test": {
+    "operation_cpi_scores": {
+      "store": {
+        "reportability": {
+          "mean": 0.8081405990967596,
+          "std": 0.02026086603667508,
+          "min": 0.7801731926760357,
+          "max": 0.8398819382179282
+        },
+        "richness": {
+          "mean": 0.8446126324511158,
+          "std": 0.017827213525902875,
+          "min": 0.821967153813572,
+          "max": 0.877419091627229
+        },
+        "recollection": {
+          "mean": 0.7589660488276473,
+          "std": 0.01633003018479251,
+          "min": 0.7338998884990293,
+          "max": 0.7838972205706672
+        },
+        "continuity": {
+          "mean": 0.9896676206046078,
+          "std": 0.010324429600913811,
+          "min": 0.9676083894557453,
+          "max": 1.0
+        },
+        "world_model": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "salience": {
+          "mean": 0.890939229551822,
+          "std": 0.02421010371977707,
+          "min": 0.8600611394540344,
+          "max": 0.9188044264596228
+        },
+        "attention": {
+          "mean": 0.7569714390830604,
+          "std": 0.011733382696036352,
+          "min": 0.7428708638554649,
+          "max": 0.7769036811558672
+        },
+        "integration": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "recall": {
+        "reportability": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "richness": {
+          "mean": 0.9403957932972971,
+          "std": 0.012906671075293745,
+          "min": 0.9205961830183361,
+          "max": 0.9608758862546992
+        },
+        "recollection": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "continuity": {
+          "mean": 0.9134188472549697,
+          "std": 0.014376313166302893,
+          "min": 0.889541880580075,
+          "max": 0.9322769940083798
+        },
+        "world_model": {
+          "mean": 0.7843246095948497,
+          "std": 0.017141422636815732,
+          "min": 0.7672162043223183,
+          "max": 0.8203630563700584
+        },
+        "salience": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "attention": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "integration": {
+          "mean": 0.8590436198284956,
+          "std": 0.015309953646704363,
+          "min": 0.8340059451284569,
+          "max": 0.8917292241305222
+        }
+      },
+      "consolidate": {
+        "reportability": {
+          "mean": 0.9000761548055705,
+          "std": 0.0101275524617226,
+          "min": 0.8804397154528315,
+          "max": 0.9184383292764267
+        },
+        "richness": {
+          "mean": 0.9995250361028425,
+          "std": 0.0009589212689659445,
+          "min": 0.9973322028216914,
+          "max": 1.0
+        },
+        "recollection": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "continuity": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "world_model": {
+          "mean": 0.97056425161487,
+          "std": 0.020119540899857,
+          "min": 0.9417540357495181,
+          "max": 0.9957761922161237
+        },
+        "salience": {
+          "mean": 0.8046511861856784,
+          "std": 0.017234426372179788,
+          "min": 0.7769960862198507,
+          "max": 0.8236022472454583
+        },
+        "attention": {
+          "mean": 0.6825791042292189,
+          "std": 0.018265826764079354,
+          "min": 0.6527131907867583,
+          "max": 0.7106015131365223
+        },
+        "integration": {
+          "mean": 1.0,
+          "std": 0.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "overall_cpi": 0.9126615071887002,
+    "cpi_consistency": 0.9149894617937288,
+    "operation_variance": 0.02338781452826599,
+    "integration_successful": "True"
+  },
+  "performance_validation": {
+    "operations_per_second": 21798.17382265931,
+    "memory_usage_mb": 0.01953125,
+    "cache_hit_rate": 0.0,
+    "scalability_score": 1.0,
+    "overall_performance_score": 0.8
+  },
+  "storage_optimization_test": {
+    "storage_efficiency": 0.8,
+    "space_savings_percent": 70,
+    "io_performance_score": 0.9,
+    "migration_compatible": true,
+    "overall_storage_score": 0.8300000000000001
+  },
+  "end_to_end_validation": {
+    "workflow_tests": [
+      {
+        "workflow_id": 0,
+        "steps_completed": [
+          "memory_storage",
+          "memory_recall",
+          "memory_consolidation",
+          "relationship_validation"
+        ],
+        "success": true,
+        "total_time": 0.0076792240142822266,
+        "cpi_scores": [
+          {
+            "reportability": 0.7808957880663867,
+            "richness": 0.8317741301609917,
+            "recollection": 0.7585964160094734,
+            "continuity": 0.972743676139333,
+            "world_model": 1.0,
+            "salience": 0.9052664376142634,
+            "attention": 0.7558332918137239,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7872371820955536,
+            "richness": 0.8305787077172181,
+            "recollection": 0.7824959042303186,
+            "continuity": 0.9860709717721491,
+            "world_model": 1.0,
+            "salience": 0.8777391134515683,
+            "attention": 0.7765674793759145,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.803797461207764,
+            "richness": 0.832127566916884,
+            "recollection": 0.7327761313426453,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.9084805641044362,
+            "attention": 0.794512598847287,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7868366062788258,
+            "richness": 0.8432172935658684,
+            "recollection": 0.7681433499218892,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.9077719748547536,
+            "attention": 0.7738857315961004,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8232242610272138,
+            "richness": 0.8804458380661696,
+            "recollection": 0.7263984242269689,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8944876062293651,
+            "attention": 0.7867902108076533,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7848323196606489,
+            "richness": 0.8590742121689814,
+            "recollection": 0.7292679432228629,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.86507922541989,
+            "attention": 0.7689144637723712,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8376105355789013,
+            "richness": 0.8406773500543019,
+            "recollection": 0.7653293433048742,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8818682585460158,
+            "attention": 0.7829821961394302,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8398450134035297,
+            "richness": 0.8720165270962119,
+            "recollection": 0.781581462425863,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8688523138664459,
+            "attention": 0.7816703491821294,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7885676579091554,
+            "richness": 0.8775499070030582,
+            "recollection": 0.729195651133467,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8980906273321455,
+            "attention": 0.7426968600259996,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8392457101349478,
+            "richness": 0.8773358337717676,
+            "recollection": 0.7309723262077641,
+            "continuity": 0.9808367646519757,
+            "world_model": 1.0,
+            "salience": 0.8887870844851099,
+            "attention": 0.7759012223645181,
+            "integration": 1.0
+          },
+          {
+            "reportability": 1.0,
+            "richness": 0.9187806761525062,
+            "recollection": 1.0,
+            "continuity": 0.9172878302509607,
+            "world_model": 0.7993472535155046,
+            "salience": 1.0,
+            "attention": 1.0,
+            "integration": 0.8831685070164975
+          },
+          {
+            "reportability": 0.8986381268813629,
+            "richness": 1.0,
+            "recollection": 1.0,
+            "continuity": 1.0,
+            "world_model": 0.9635846541175327,
+            "salience": 0.8052304570769356,
+            "attention": 0.6573344026877908,
+            "integration": 1.0
+          }
+        ]
+      },
+      {
+        "workflow_id": 1,
+        "steps_completed": [
+          "memory_storage",
+          "memory_recall",
+          "memory_consolidation",
+          "relationship_validation"
+        ],
+        "success": true,
+        "total_time": 0.010882139205932617,
+        "cpi_scores": [
+          {
+            "reportability": 0.8042315081286157,
+            "richness": 0.8382403442245377,
+            "recollection": 0.7315820153983412,
+            "continuity": 0.9758601590172425,
+            "world_model": 1.0,
+            "salience": 0.8804609252941157,
+            "attention": 0.7838343268893817,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8315738082730941,
+            "richness": 0.8220502852071836,
+            "recollection": 0.7848377687859566,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8673187757634985,
+            "attention": 0.7815213224928486,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8182813927245125,
+            "richness": 0.8774514607069739,
+            "recollection": 0.7794301722716341,
+            "continuity": 0.983421803839111,
+            "world_model": 1.0,
+            "salience": 0.8785219125457978,
+            "attention": 0.7497850047266041,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.834643405116138,
+            "richness": 0.8395496171869331,
+            "recollection": 0.7768201476885186,
+            "continuity": 0.9832678284588098,
+            "world_model": 1.0,
+            "salience": 0.8928122732649157,
+            "attention": 0.7521406619483411,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8139562356240825,
+            "richness": 0.8476320452684195,
+            "recollection": 0.7379505506781078,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8605376117449879,
+            "attention": 0.7614066073658285,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7893505701662151,
+            "richness": 0.853348729323275,
+            "recollection": 0.7507259054987914,
+            "continuity": 0.9758164064691575,
+            "world_model": 1.0,
+            "salience": 0.9135726233945052,
+            "attention": 0.7549587598086992,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7975662943637221,
+            "richness": 0.8802755057385564,
+            "recollection": 0.7518750445739882,
+            "continuity": 0.994067976194247,
+            "world_model": 1.0,
+            "salience": 0.8600279433009603,
+            "attention": 0.7567518005062455,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8388519561302006,
+            "richness": 0.8633527431894807,
+            "recollection": 0.7483751638152393,
+            "continuity": 0.9651886500376637,
+            "world_model": 1.0,
+            "salience": 0.8861333811209957,
+            "attention": 0.7610180949986742,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8355701323805551,
+            "richness": 0.8634767193882785,
+            "recollection": 0.7562404724278399,
+            "continuity": 0.9975892497827428,
+            "world_model": 1.0,
+            "salience": 0.918574064886124,
+            "attention": 0.7675713968307595,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7980694792609812,
+            "richness": 0.829608830330341,
+            "recollection": 0.7499459469292478,
+            "continuity": 0.9953462747344306,
+            "world_model": 1.0,
+            "salience": 0.8855154392494275,
+            "attention": 0.7478053360620706,
+            "integration": 1.0
+          },
+          {
+            "reportability": 1.0,
+            "richness": 0.9248595804879135,
+            "recollection": 1.0,
+            "continuity": 0.8862084645781614,
+            "world_model": 0.7864621116271332,
+            "salience": 1.0,
+            "attention": 1.0,
+            "integration": 0.8675891756947952
+          },
+          {
+            "reportability": 0.9105566891408723,
+            "richness": 1.0,
+            "recollection": 1.0,
+            "continuity": 1.0,
+            "world_model": 0.9980705976654591,
+            "salience": 0.7804541986427516,
+            "attention": 0.6812561584852225,
+            "integration": 1.0
+          }
+        ]
+      },
+      {
+        "workflow_id": 2,
+        "steps_completed": [
+          "memory_storage",
+          "memory_recall",
+          "memory_consolidation",
+          "relationship_validation"
+        ],
+        "success": true,
+        "total_time": 0.014418601989746094,
+        "cpi_scores": [
+          {
+            "reportability": 0.7985134911036326,
+            "richness": 0.8751348769783316,
+            "recollection": 0.7370111541732249,
+            "continuity": 0.9669869225488629,
+            "world_model": 1.0,
+            "salience": 0.9122485149561791,
+            "attention": 0.7820866271226549,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7937268766885667,
+            "richness": 0.8559723094181785,
+            "recollection": 0.7260223499050534,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8730626364113493,
+            "attention": 0.7825781646702928,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7854543042726857,
+            "richness": 0.8422225151091518,
+            "recollection": 0.7377009796783207,
+            "continuity": 0.9996791620650378,
+            "world_model": 1.0,
+            "salience": 0.8710985655291678,
+            "attention": 0.7378852348987842,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.81227801249362,
+            "richness": 0.8447805203407808,
+            "recollection": 0.7857258176746269,
+            "continuity": 0.9730605510118914,
+            "world_model": 1.0,
+            "salience": 0.8979744382923552,
+            "attention": 0.7573321743257257,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8357707739582629,
+            "richness": 0.86822979830015,
+            "recollection": 0.7613633400785547,
+            "continuity": 0.9888566923337001,
+            "world_model": 1.0,
+            "salience": 0.9057020656320447,
+            "attention": 0.7712491451769179,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8094600365677429,
+            "richness": 0.868100330612547,
+            "recollection": 0.7709277798365083,
+            "continuity": 0.9954990751567574,
+            "world_model": 1.0,
+            "salience": 0.9171954211397885,
+            "attention": 0.7713102594669494,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8195041277500439,
+            "richness": 0.8522831785458459,
+            "recollection": 0.7513802917672596,
+            "continuity": 0.9780640736896851,
+            "world_model": 1.0,
+            "salience": 0.8893813268321089,
+            "attention": 0.765280641158526,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8005667796237935,
+            "richness": 0.8254321269352373,
+            "recollection": 0.7618727113099036,
+            "continuity": 0.9736382971684411,
+            "world_model": 1.0,
+            "salience": 0.8865774799571087,
+            "attention": 0.7536484909846642,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7832681653530558,
+            "richness": 0.8721968761338894,
+            "recollection": 0.748704147962894,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.9076948760082783,
+            "attention": 0.7456982599909164,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8116150655694016,
+            "richness": 0.8438015250410299,
+            "recollection": 0.7527755168414108,
+            "continuity": 0.9732197487001116,
+            "world_model": 1.0,
+            "salience": 0.8966487301734558,
+            "attention": 0.746763571436194,
+            "integration": 1.0
+          },
+          {
+            "reportability": 1.0,
+            "richness": 0.9292211658812356,
+            "recollection": 1.0,
+            "continuity": 0.9276000478500733,
+            "world_model": 0.7974746457630445,
+            "salience": 1.0,
+            "attention": 1.0,
+            "integration": 0.8339691192909942
+          },
+          {
+            "reportability": 0.890392821161458,
+            "richness": 0.9965549550024514,
+            "recollection": 1.0,
+            "continuity": 1.0,
+            "world_model": 0.964976670811478,
+            "salience": 0.7710892649559282,
+            "attention": 0.6948779206334408,
+            "integration": 1.0
+          }
+        ]
+      },
+      {
+        "workflow_id": 3,
+        "steps_completed": [
+          "memory_storage",
+          "memory_recall",
+          "memory_consolidation",
+          "relationship_validation"
+        ],
+        "success": true,
+        "total_time": 0.015928030014038086,
+        "cpi_scores": [
+          {
+            "reportability": 0.8234115673127229,
+            "richness": 0.8370619723216112,
+            "recollection": 0.7506426328738085,
+            "continuity": 0.9850834751224594,
+            "world_model": 1.0,
+            "salience": 0.9052496192590932,
+            "attention": 0.7434508578880875,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7921591188375676,
+            "richness": 0.8591173188605911,
+            "recollection": 0.7654056287412108,
+            "continuity": 0.9918796294477273,
+            "world_model": 1.0,
+            "salience": 0.9086262936660338,
+            "attention": 0.7605109061304764,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7895360927636597,
+            "richness": 0.8736502115380665,
+            "recollection": 0.7585530866553442,
+            "continuity": 0.9838971155586231,
+            "world_model": 1.0,
+            "salience": 0.8659739517789093,
+            "attention": 0.7848173737260786,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8316651629547828,
+            "richness": 0.8792303240386328,
+            "recollection": 0.7583722201895846,
+            "continuity": 0.9747927764953954,
+            "world_model": 1.0,
+            "salience": 0.8718833160179797,
+            "attention": 0.7683305792073026,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8117245449572437,
+            "richness": 0.8650722693172884,
+            "recollection": 0.7710262350682778,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8756907939600391,
+            "attention": 0.7714434440476434,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8394720880543092,
+            "richness": 0.8579901965889618,
+            "recollection": 0.7804493107478814,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8953293031675607,
+            "attention": 0.7468618273118526,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7853254137895396,
+            "richness": 0.8561419607972013,
+            "recollection": 0.7742039804397275,
+            "continuity": 0.9885966207221547,
+            "world_model": 1.0,
+            "salience": 0.8781507437324962,
+            "attention": 0.7403371363480581,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7941115832094218,
+            "richness": 0.8444132429856565,
+            "recollection": 0.757917461164224,
+            "continuity": 0.9824778575296391,
+            "world_model": 1.0,
+            "salience": 0.8914629765611346,
+            "attention": 0.7563547861195106,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7924980975554499,
+            "richness": 0.8692973899446659,
+            "recollection": 0.7422865073197624,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8741221200002393,
+            "attention": 0.7938423256812144,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8268062640941037,
+            "richness": 0.8285587108012926,
+            "recollection": 0.7408027041858269,
+            "continuity": 0.9824305055514192,
+            "world_model": 1.0,
+            "salience": 0.9016057959210201,
+            "attention": 0.7717952041415981,
+            "integration": 1.0
+          },
+          {
+            "reportability": 1.0,
+            "richness": 0.9367525429210354,
+            "recollection": 1.0,
+            "continuity": 0.9022730176062757,
+            "world_model": 0.8232955546164912,
+            "salience": 1.0,
+            "attention": 1.0,
+            "integration": 0.8811335809651749
+          },
+          {
+            "reportability": 0.9142154380895728,
+            "richness": 1.0,
+            "recollection": 1.0,
+            "continuity": 1.0,
+            "world_model": 0.9675046046479914,
+            "salience": 0.8030855594160469,
+            "attention": 0.6765606912146299,
+            "integration": 1.0
+          }
+        ]
+      },
+      {
+        "workflow_id": 4,
+        "steps_completed": [
+          "memory_storage",
+          "memory_recall",
+          "memory_consolidation",
+          "relationship_validation"
+        ],
+        "success": true,
+        "total_time": 0.023120880126953125,
+        "cpi_scores": [
+          {
+            "reportability": 0.8236538935166571,
+            "richness": 0.824474697552692,
+            "recollection": 0.7487472538295444,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8998473316744137,
+            "attention": 0.7576741369975373,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8326176480156411,
+            "richness": 0.8565107854421912,
+            "recollection": 0.7330305132144791,
+            "continuity": 0.9762088177727393,
+            "world_model": 1.0,
+            "salience": 0.8800460982763232,
+            "attention": 0.760690469235148,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7882116471455699,
+            "richness": 0.866632285492431,
+            "recollection": 0.7775692615871101,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8686993576832566,
+            "attention": 0.7453777348669715,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7873270509796827,
+            "richness": 0.8800814280842555,
+            "recollection": 0.769950414230279,
+            "continuity": 0.9767350466296546,
+            "world_model": 1.0,
+            "salience": 0.8711864560838904,
+            "attention": 0.7816725687843931,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8229881446031803,
+            "richness": 0.8663030806989231,
+            "recollection": 0.7671849286949388,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8684441221607723,
+            "attention": 0.7647782969505713,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8126779357373642,
+            "richness": 0.8640531853856049,
+            "recollection": 0.7509316573576876,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.9180239373171524,
+            "attention": 0.7647929231136467,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8308899656277602,
+            "richness": 0.8444488187708242,
+            "recollection": 0.750302504468303,
+            "continuity": 0.9793054758060812,
+            "world_model": 1.0,
+            "salience": 0.8783207651340048,
+            "attention": 0.768229420950751,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.7868018579067317,
+            "richness": 0.8282224883882227,
+            "recollection": 0.7535380771180915,
+            "continuity": 0.998337351890368,
+            "world_model": 1.0,
+            "salience": 0.871719937894889,
+            "attention": 0.7621243308862247,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8271738005908731,
+            "richness": 0.827867886499751,
+            "recollection": 0.7397341304904329,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8721535602488193,
+            "attention": 0.7391729883134416,
+            "integration": 1.0
+          },
+          {
+            "reportability": 0.8340315124262297,
+            "richness": 0.8432372431933575,
+            "recollection": 0.7494996149488682,
+            "continuity": 1.0,
+            "world_model": 1.0,
+            "salience": 0.8619255973279423,
+            "attention": 0.7550312012156005,
+            "integration": 1.0
+          },
+          {
+            "reportability": 1.0,
+            "richness": 0.9647046012319226,
+            "recollection": 1.0,
+            "continuity": 0.9063207442958306,
+            "world_model": 0.8215410356537264,
+            "salience": 1.0,
+            "attention": 1.0,
+            "integration": 0.8757787884121335
+          },
+          {
+            "reportability": 0.9183068880984603,
+            "richness": 1.0,
+            "recollection": 1.0,
+            "continuity": 1.0,
+            "world_model": 0.9725683728245984,
+            "salience": 0.7987748241796369,
+            "attention": 0.6578920796732536,
+            "integration": 1.0
+          }
+        ]
+      }
+    ],
+    "workflow_success_rate": 1.0,
+    "data_integrity_maintained": true,
+    "consciousness_stable": "True",
+    "performance_targets_met": "True",
+    "overall_e2e_score": 0.9999999999999999
+  },
+  "overall_validation": {
+    "overall_score": 0.9085323014377401,
+    "individual_scores": {
+      "memory_operations": 1.0,
+      "consciousness_integration": 0.9126615071887002,
+      "performance": 0.8,
+      "storage_optimization": 0.8300000000000001,
+      "end_to_end": 0.9999999999999999
+    },
+    "validation_criteria": {
+      "memory_operations_passed": true,
+      "consciousness_integration_passed": "True",
+      "performance_passed": true,
+      "storage_optimization_passed": true,
+      "end_to_end_passed": true
+    },
+    "all_tests_passed": true
+  }
+}

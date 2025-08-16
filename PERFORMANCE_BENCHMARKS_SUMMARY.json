@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "version": "1.0.0-production",
+    "generated_timestamp": "2025-08-15 20:38:56",
+    "validation_score": 0.9085323014377401
+  },
+  "hrr_optimization_results": {
+    "optimal_dimension": 64,
+    "dimension_performance_scores": {
+      "64": {
+        "processing_time": 0.052,
+        "memory_efficiency": 4.0,
+        "relationship_quality": 1.0,
+        "diversity_score": 0.035,
+        "performance_score": 3.855,
+        "num_relationships": 1225,
+        "num_units": 50
+      },
+      "128": {
+        "processing_time": 0.005,
+        "memory_efficiency": 2.0,
+        "relationship_quality": 1.0,
+        "diversity_score": 0.025,
+        "performance_score": 3.354,
+        "num_relationships": 1225,
+        "num_units": 50
+      },
+      "256": {
+        "processing_time": 0.003,
+        "memory_efficiency": 1.0,
+        "relationship_quality": 1.0,
+        "diversity_score": 0.019,
+        "performance_score": 3.103,
+        "num_relationships": 1225,
+        "num_units": 50
+      },
+      "512": {
+        "processing_time": 0.005,
+        "memory_efficiency": 0.5,
+        "relationship_quality": 1.0,
+        "diversity_score": 0.012,
+        "performance_score": 2.977,
+        "num_relationships": 1225,
+        "num_units": 50
+      },
+      "1024": {
+        "processing_time": 0.005,
+        "memory_efficiency": 0.25,
+        "relationship_quality": 1.0,
+        "diversity_score": 0.009,
+        "performance_score": 2.914,
+        "num_relationships": 1225,
+        "num_units": 50
+      }
+    },
+    "memory_efficiency_gain": "4x better than 256D baseline",
+    "processing_speed_improvement": "Optimized for 64D vectors"
+  },
+  "environmental_tuning_results": {
+    "optimal_parameters": {
+      "attraction_strength": 0.7,
+      "repulsion_threshold": 0.4,
+      "decay_rate": 0.05,
+      "consolidation_threshold": 0.9
+    },
+    "behavior_score": 0.707,
+    "relationship_quality": "High attraction, stable relationships",
+    "consolidation_efficiency": "90% threshold for quality consolidation"
+  },
+  "consciousness_integration_performance": {
+    "overall_cpi_score": 0.9126615071887002,
+    "cpi_consistency": 0.9149894617937288,
+    "subscale_performance": {
+      "reportability": {
+        "weight": 0.15,
+        "target_score": 0.9
+      },
+      "richness": {
+        "weight": 0.12,
+        "target_score": 0.851
+      },
+      "recollection": {
+        "weight": 0.18,
+        "target_score": 0.945
+      },
+      "continuity": {
+        "weight": 0.14,
+        "target_score": 0.904
+      },
+      "world_model": {
+        "weight": 0.13,
+        "target_score": 0.882
+      },
+      "salience": {
+        "weight": 0.1,
+        "target_score": 0.889
+      },
+      "attention": {
+        "weight": 0.09,
+        "target_score": 0.851
+      },
+      "integration": {
+        "weight": 0.09,
+        "target_score": 0.863
+      }
+    },
+    "real_time_processing": true
+  },
+  "storage_optimization_performance": {
+    "storage_efficiency": 0.8,
+    "space_savings_percent": 70,
+    "io_performance_score": 0.9,
+    "migration_compatible": true,
+    "backend": "lmdb_optimized",
+    "compression_enabled": true
+  },
+  "system_performance_metrics": {
+    "operations_per_second": 21798.17382265931,
+    "memory_usage_mb": 0.01953125,
+    "cache_hit_rate": 0.0,
+    "scalability_score": 1.0,
+    "target_operations_per_second": 300,
+    "max_memory_usage_mb": 500
+  },
+  "end_to_end_validation": {
+    "workflow_success_rate": 1.0,
+    "data_integrity_maintained": true,
+    "consciousness_stable": "True",
+    "performance_targets_met": "True"
+  },
+  "production_readiness_assessment": {
+    "all_tests_passed": true,
+    "configuration_complete": true,
+    "security_configured": true,
+    "monitoring_enabled": true,
+    "deployment_ready": true
+  }
+}
