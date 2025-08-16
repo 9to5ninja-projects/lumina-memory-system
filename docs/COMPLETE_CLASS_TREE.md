@@ -5,10 +5,7 @@
 **Status**: Complete mapping with SpaCy NLP integration + 4 bridge classes identified
 **New**: 15 SpaCy classes mapped + 4 integration conflicts resolved
 
-
-## Update: August 14, 2025
-### EnhancedLexicalAttributor Added
-- **EnhancedLexicalAttributor**: Advanced bridge class for modular/fine-tuned attribution. Supports weighted scoring (mathematical, vector, entity) for domain-specific optimization. Use for research, prototyping, and semantic-rich tasks.
+---
 
 ```
 📦 LUMINA MEMORY SYSTEM CLASS ARCHITECTURE

@@ -18,11 +18,6 @@
    - **Main Branch**: ❌ **NOT FOUND**
    - **Status**: XP Core exclusive class - no conflicts
 
-2. **EnhancedLexicalAttributor** (Line ~530)
-   - **XP Core**: ✅ **DEFINED** (modular, weighted scoring for fine-tuning; supports mathematical, vector, entity components)
-   - **Purpose**: Advanced bridge for semantic-rich and research tasks. Allows configuration of weights for domain adaptation.
-   - **Relationship**: Extends HybridLexicalAttributor ecosystem; recommended for tasks needing semantic nuance.
-
 2. **HolographicShapeComputer** (Line 1366)  
    - **XP Core**: ✅ **DEFINED** (complete implementation with __init__, compute_shape, validate_shape)
    - **Bridge**: ❌ **NOT FOUND**

@@ -76,11 +76,6 @@ class QueryError(LuminaError):
     pass
 
 
-class EmbeddingVersionError(LuminaError):
-    """Embedding version compatibility errors."""
-    pass
-
-
-class MemoryError(LuminaError):
+class EmbeddingVersionError(LuminaError):`n    """Embedding version compatibility errors."""`n    pass`n`n`nclass MemoryError(LuminaError):
     """Memory management errors."""
     pass

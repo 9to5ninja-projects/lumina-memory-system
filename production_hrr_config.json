@@ -1,0 +1,42 @@
+{
+  "hrr_dimension": 64,
+  "environmental_parameters": {
+    "attraction_strength": 0.7,
+    "repulsion_threshold": 0.4,
+    "decay_rate": 0.05,
+    "consolidation_threshold": 0.9
+  },
+  "consciousness_integration": {
+    "enabled": true,
+    "cpi_threshold": 0.7,
+    "consistency_threshold": 0.6,
+    "average_scores": {
+      "reportability": 0.9,
+      "richness": 0.851,
+      "recollection": 0.945,
+      "continuity": 0.904,
+      "world_model": 0.882,
+      "salience": 0.889,
+      "attention": 0.851,
+      "integration": 0.863
+    }
+  },
+  "storage_configuration": {
+    "optimized_storage_enabled": true,
+    "cache_size": 1000,
+    "migration_on_access": true,
+    "binary_serialization": true
+  },
+  "performance_targets": {
+    "min_units_per_second": 100,
+    "max_memory_usage_mb": 500,
+    "min_relationship_quality": 0.6,
+    "min_scalability_score": 0.7
+  },
+  "validation_results": {
+    "dimensionality_optimization_passed": true,
+    "behavior_tuning_passed": true,
+    "consciousness_integration_passed": true,
+    "performance_benchmarks_passed": true
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "dimensionality_optimization": {
+    "64": {
+      "processing_time": 0.052,
+      "memory_efficiency": 4.0,
+      "relationship_quality": 1.0,
+      "diversity_score": 0.035,
+      "performance_score": 3.855,
+      "num_relationships": 1225,
+      "num_units": 50
+    },
+    "128": {
+      "processing_time": 0.005,
+      "memory_efficiency": 2.0,
+      "relationship_quality": 1.0,
+      "diversity_score": 0.025,
+      "performance_score": 3.354,
+      "num_relationships": 1225,
+      "num_units": 50
+    },
+    "256": {
+      "processing_time": 0.003,
+      "memory_efficiency": 1.0,
+      "relationship_quality": 1.0,
+      "diversity_score": 0.019,
+      "performance_score": 3.103,
+      "num_relationships": 1225,
+      "num_units": 50
+    },
+    "512": {
+      "processing_time": 0.005,
+      "memory_efficiency": 0.5,
+      "relationship_quality": 1.0,
+      "diversity_score": 0.012,
+      "performance_score": 2.977,
+      "num_relationships": 1225,
+      "num_units": 50
+    },
+    "1024": {
+      "processing_time": 0.005,
+      "memory_efficiency": 0.25,
+      "relationship_quality": 1.0,
+      "diversity_score": 0.009,
+      "performance_score": 2.914,
+      "num_relationships": 1225,
+      "num_units": 50
+    }
+  },
+  "environmental_behavior_tuning": {
+    "best_parameters": {
+      "attraction_strength": 0.7,
+      "repulsion_threshold": 0.4,
+      "decay_rate": 0.05,
+      "consolidation_threshold": 0.9
+    },
+    "best_score": 0.707,
+    "parameter_combinations_tested": [
+      {
+        "attraction_strength": 0.5,
+        "repulsion_threshold": 0.6,
+        "decay_rate": 0.1,
+        "consolidation_threshold": 0.8
+      },
+      {
+        "attraction_strength": 0.7,
+        "repulsion_threshold": 0.4,
+        "decay_rate": 0.05,
+        "consolidation_threshold": 0.9
+      },
+      {
+        "attraction_strength": 0.3,
+        "repulsion_threshold": 0.8,
+        "decay_rate": 0.15,
+        "consolidation_threshold": 0.7
+      },
+      {
+        "attraction_strength": 0.6,
+        "repulsion_threshold": 0.5,
+        "decay_rate": 0.08,
+        "consolidation_threshold": 0.85
+      },
+      {
+        "attraction_strength": 0.4,
+        "repulsion_threshold": 0.7,
+        "decay_rate": 0.12,
+        "consolidation_threshold": 0.75
+      }
+    ]
+  },
+  "consciousness_integration_tests": {
+    "average_cpi_scores": {
+      "reportability": {
+        "mean": 0.9,
+        "std": 0.057,
+        "min": 0.75,
+        "max": 0.987
+      },
+      "richness": {
+        "mean": 0.851,
+        "std": 0.075,
+        "min": 0.712,
+        "max": 1.0
+      },
+      "recollection": {
+        "mean": 0.945,
+        "std": 0.058,
+        "min": 0.818,
+        "max": 1.0
+      },
+      "continuity": {
+        "mean": 0.904,
+        "std": 0.068,
+        "min": 0.779,
+        "max": 1.0
+      },
+      "world_model": {
+        "mean": 0.882,
+        "std": 0.064,
+        "min": 0.758,
+        "max": 1.0
+      },
+      "salience": {
+        "mean": 0.889,
+        "std": 0.086,
+        "min": 0.712,
+        "max": 1.0
+      },
+      "attention": {
+        "mean": 0.851,
+        "std": 0.09,
+        "min": 0.67,
+        "max": 1.0
+      },
+      "integration": {
+        "mean": 0.863,
+        "std": 0.059,
+        "min": 0.733,
+        "max": 0.97
+      }
+    },
+    "overall_cpi": 0.886,
+    "cpi_consistency": 0.93,
+    "num_units_tested": 25,
+    "integration_successful": true
+  },
+  "performance_benchmarks": {
+    "units_per_second": 385.0,
+    "memory_usage_mb": 25.6,
+    "storage_efficiency": 0.8,
+    "relationship_calc_time": 0.012,
+    "scalability_score": 0.85,
+    "total_benchmark_time": 0.68,
+    "num_relationships": 1225,
+    "scalability_relationships": 1540
+  },
+  "optimal_configuration": {
+    "hrr_dimension": 64,
+    "environmental_parameters": {
+      "attraction_strength": 0.7,
+      "repulsion_threshold": 0.4,
+      "decay_rate": 0.05,
+      "consolidation_threshold": 0.9
+    },
+    "consciousness_integration": {
+      "enabled": true,
+      "cpi_threshold": 0.7,
+      "consistency_threshold": 0.6,
+      "average_scores": {
+        "reportability": 0.9,
+        "richness": 0.851,
+        "recollection": 0.945,
+        "continuity": 0.904,
+        "world_model": 0.882,
+        "salience": 0.889,
+        "attention": 0.851,
+        "integration": 0.863
+      }
+    },
+    "storage_configuration": {
+      "optimized_storage_enabled": true,
+      "cache_size": 1000,
+      "migration_on_access": true,
+      "binary_serialization": true
+    },
+    "performance_targets": {
+      "min_units_per_second": 100,
+      "max_memory_usage_mb": 500,
+      "min_relationship_quality": 0.6,
+      "min_scalability_score": 0.7
+    },
+    "validation_results": {
+      "dimensionality_optimization_passed": true,
+      "behavior_tuning_passed": true,
+      "consciousness_integration_passed": true,
+      "performance_benchmarks_passed": true
+    }
+  }
+}
